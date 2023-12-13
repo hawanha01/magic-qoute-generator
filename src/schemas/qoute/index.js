@@ -1,0 +1,40 @@
+const qouteStore = [
+  {
+    id: 1,
+    user_id: 1,
+    date: Date.now(),
+    time: Date.time(),
+    tag_ids: [1, 2],
+    body: "content body 1",
+    like_ids: [3],
+    dislike_ids: [2],
+    report_ids: [2],
+    comment_ids: [1],
+  },
+  {
+    id: 2,
+    user_id: 2,
+    date: Date.now(),
+    time: Date.time(),
+    tag_ids: [2],
+    body: "content body 2",
+    like_ids: [2],
+    dislike_ids: [3],
+    report_ids: [1],
+    comment_ids: [2],
+  },
+  {
+    id: 3,
+    user_id: 3,
+    date: Date.now(),
+    time: Date.time(),
+    tag_ids: [2, 3],
+    body: "content body 3",
+    like_ids: [1],
+    dislike_ids: [1],
+    report_ids: [3],
+    comment_ids: [3],
+  },
+];
+
+export default qouteStore;

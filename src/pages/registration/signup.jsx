@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import React from "react";
-import userSchema from "../../schemas/userSchema";
+import userValidation from "../../validation/userValidation";
 
 const Signup = () => {
   const formik = useFormik({
@@ -15,7 +15,7 @@ const Signup = () => {
       password: "",
       confirm_password: "",
     },
-    validationSchema: userSchema,
+    validationSchema: userValidation,
     onSubmit: (values, { resetForm }) => {
       console.log("values on submit:", values);
       resetForm();

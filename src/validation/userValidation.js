@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-const userSchema = Yup.object({
+const userValidation = Yup.object({
   first_name: Yup.string()
     .min(2, "First Name must be at lease 6 charachters")
     .max(25)
@@ -24,4 +24,4 @@ const userSchema = Yup.object({
     .oneOf([Yup.ref("password"), null], "Passwords must match")
     .required("Confirm password is required"),
 });
-export default userSchema;
+export default userValidation;

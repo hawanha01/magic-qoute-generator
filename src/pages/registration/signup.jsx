@@ -7,18 +7,20 @@ import { addUser } from "../../actions/userActions";
 
 const Signup = () => {
   const dispatch = useDispatch();
+  const initialValues = {
+    first_name: "",
+    last_name: "",
+    name: "",
+    user_name: "",
+    profile_picture: "",
+    gender: "male",
+    email: "",
+    password: "",
+    confirm_password: "",
+  };
+
   const formik = useFormik({
-    initialValues: {
-      first_name: "",
-      last_name: "",
-      name: "",
-      user_name: "",
-      profile_picture: "",
-      gender: "male",
-      email: "",
-      password: "",
-      confirm_password: "",
-    },
+    initialValues,
     validationSchema: userValidation,
     onSubmit: (values, { resetForm }) => {
       dispatch(addUser(values));

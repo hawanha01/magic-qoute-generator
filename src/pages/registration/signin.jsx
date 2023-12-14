@@ -8,11 +8,12 @@ const Signin = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users.users);
   const navigate = useNavigate();
+  const initialValues = {
+    email: "",
+    password: "",
+  };
   const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
+    initialValues,
     onSubmit: (values, { resetForm }) => {
       try {
         const user = users.find(

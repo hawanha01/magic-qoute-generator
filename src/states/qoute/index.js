@@ -12,7 +12,7 @@ const qouteSlice = createSlice({
     addQoute: (state, action) => {
       state.qoutes = [
         ...state.qoutes,
-        { ...action.payload.qoute, user_id: action.payload.current_user.id },
+        { ...action.payload, id: state.qoutes.length + 1 },
       ];
     },
     deleteQoute: (state, action) => {

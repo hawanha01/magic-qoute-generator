@@ -6,6 +6,7 @@ const initialState = {
 };
 
 const tagSlice = createSlice({
+  name: "tags",
   initialState,
   reducers: {
     addTag: (state, action) => {

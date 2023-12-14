@@ -6,6 +6,7 @@ const initialState = {
 };
 
 const qouteSlice = createSlice({
+  name: "qoutes",
   initialState,
   reducers: {
     addQoute: (state, action) => {

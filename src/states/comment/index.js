@@ -6,6 +6,7 @@ const initialState = {
 };
 
 const commentSlice = createSlice({
+  name: "comments",
   initialState,
   reducers: {
     addComment: (state, action) => {

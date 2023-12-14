@@ -2,19 +2,18 @@ import * as Yup from "yup";
 
 const userValidation = Yup.object({
   first_name: Yup.string()
-    .min(2, "First Name must be at lease 6 charachters")
+    .min(2, "First Name must be at lease 2 charachters")
     .max(25)
     .required("Please enter your first name"),
   last_name: Yup.string()
-    .min(2, "Last Name must be at lease 6 charachters")
+    .min(2, "Last Name must be at lease 2 charachters")
     .max(25)
     .required("Please enter your last name"),
   user_name: Yup.string()
     .required("User Name is required")
-    .matches(
-      /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-      "User Name must only contain letters, numbers, and be between 3 and 20 characters."
-    ),
+    .min(4, "User Name must be at lease 4 charachters")
+    .max(25)
+    .required("Please enter your last name"),
   email: Yup.string()
     .email("Invalid email adress")
     .required("Please enter your email"),

@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import React from "react";
-import userValidation from "../../validation/userValidation";
+import userValidation from "../../validations/userValidation";
 
 const Signup = () => {
   const formik = useFormik({
@@ -53,10 +53,7 @@ const Signup = () => {
 
         <div>
           <label htmlFor="profile_picture">Profile Picture</label>
-          <input
-            type="file"
-            {...formik.getFieldProps("profile_picture")}
-          />
+          <input type="file" {...formik.getFieldProps("profile_picture")} />
           {formik.errors.profile_picture && formik.touched.profile_picture ? (
             <p className="form-error">{formik.errors.profile_picture}</p>
           ) : null}
@@ -103,7 +100,12 @@ const Signup = () => {
 
         <div>
           <label htmlFor="gender">Gender</label>
-          <select value={formik.gender} {...formik.getFieldProps("gender")}>
+          <select
+            value={formik.gender}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            name="gender"
+          >
             <option value="male">Male</option>
             <option value="female">Female</option>
             <option value="other">Other</option>

@@ -3,18 +3,16 @@ import schema from "../../schema";
 
 const initialState = {
   users: schema.users,
-  current_user: null,
 };
-
 const userSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
     addUser: (state, action) => {
-      console.log(state.users.users, action.payload);
-    },
-    loginUser: (state, action) => {
-      state.users.current_user = action.payload;
+      state.users = [
+        ...state.users,
+        { ...action.payload, id: state.users.length + 1 },
+      ];
     },
     likeQoute: (state, action) => {
       console.log(state.users.users, action.payload);

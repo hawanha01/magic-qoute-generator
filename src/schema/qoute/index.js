@@ -2,8 +2,8 @@ const qouteStore = [
   {
     id: 1,
     user_id: 1,
-    date: new Date(),
-    time: `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`,
+    date: new Date().toISOString(),
+    time: new Date().getTime(),
     tag_ids: [1, 2],
     body: "content body 1",
     like_ids: [3],
@@ -14,8 +14,8 @@ const qouteStore = [
   {
     id: 2,
     user_id: 2,
-    date: new Date(),
-    time: `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`,
+    date: new Date().toISOString(),
+    time: new Date().getTime(),
     tag_ids: [2],
     body: "content body 2",
     like_ids: [2],
@@ -26,8 +26,8 @@ const qouteStore = [
   {
     id: 3,
     user_id: 3,
-    date: new Date(),
-    time: `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`,
+    date: new Date().toISOString(),
+    time: new Date().getTime(),
     tag_ids: [2, 3],
     body: "content body 3",
     like_ids: [1],

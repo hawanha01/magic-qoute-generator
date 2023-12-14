@@ -1,8 +1,12 @@
 import { useFormik } from "formik";
 import React from "react";
 import userValidation from "../../validations/userValidation";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../../actions/userActions";
 
 const Signup = () => {
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       first_name: "",
@@ -10,14 +14,14 @@ const Signup = () => {
       name: "",
       user_name: "",
       profile_picture: "",
-      gender: "",
+      gender: "male",
       email: "",
       password: "",
       confirm_password: "",
     },
     validationSchema: userValidation,
     onSubmit: (values, { resetForm }) => {
-      console.log("values on submit:", values);
+      dispatch(addUser(values));
       resetForm();
     },
   });
@@ -143,6 +147,7 @@ const Signup = () => {
 
         <button type="submit">Submit</button>
       </form>
+      <Link to="/">Back to login</Link>
     </div>
   );
 };

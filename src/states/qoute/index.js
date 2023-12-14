@@ -10,7 +10,10 @@ const qouteSlice = createSlice({
   initialState,
   reducers: {
     addQoute: (state, action) => {
-      console.log(state, action.payload);
+      state.qoutes = [
+        ...state.qoutes,
+        { ...action.payload.qoute, user_id: action.payload.current_user.id },
+      ];
     },
     deleteQoute: (state, action) => {
       console.log(state, action.payload);

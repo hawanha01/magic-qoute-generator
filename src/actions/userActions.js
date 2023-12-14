@@ -1,7 +1,6 @@
 import { createAction } from "@reduxjs/toolkit";
 
 export const addUser = createAction("users/addUser");
-export const loginUser = createAction("users/loginUser");
 export const likeQoute = createAction("users/likeQoute");
 export const dislikeQoute = createAction("users/dislikeQoute");
 export const likeComment = createAction("users/likeComment");

@@ -25,4 +25,13 @@ const commentStore = [
   },
 ];
 
+export const defaultComment = {
+  id: null,
+  user_id: null,
+  qoute_id: null,
+  like_ids: [],
+  dislike_ids: [],
+  report_ids: [],
+};
+
 export default commentStore;

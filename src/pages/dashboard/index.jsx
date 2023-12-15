@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import Qoute from "../../components/qoute";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import QouteModal from "../../components/qoute/qouteModal";
 import Modal from "react-modal";
+import { setCurrentUser } from "../../actions/currentUserActions";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const qoutes = useSelector((state) => state.qoutes.qoutes);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -15,13 +19,18 @@ const Dashboard = () => {
   const closeModal = () => {
     setModalIsOpen(false);
   };
+
+  const handleSignout = () => {
+    dispatch(setCurrentUser());
+    navigate("/");
+  };
   return (
     <div>
-      {console.log("qoutes", qoutes)}
       {qoutes?.map((qoute) => {
         return <Qoute key={qoute.id} qoute_id={qoute.id} />;
       })}
       <button onClick={openModal}>Create new qoute</button>
+      <button onClick={handleSignout}>sign out</button>
       <Modal isOpen={modalIsOpen} onRequestClose={closeModal}>
         <QouteModal closeModal={closeModal} />
       </Modal>

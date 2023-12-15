@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import schema from "../../schema";
-
+import { defaultSchema } from "../../schema";
 const initialState = {
   users: schema.users,
 };
@@ -11,7 +11,11 @@ const userSlice = createSlice({
     addUser: (state, action) => {
       state.users = [
         ...state.users,
-        { ...action.payload, id: state.users.length + 1 },
+        {
+          ...defaultSchema.defaultUser,
+          ...action.payload,
+          id: state.users.length + 1,
+        },
       ];
     },
     likeQoute: (state, action) => {

@@ -16,8 +16,7 @@ const QouteModal = ({ closeModal }) => {
     initialValues,
     validationSchema: qouteValidation,
     onSubmit: (values, { resetForm }) => {
-      values.user_id = current_user.id;
-      dispatch(addQoute(values));
+      dispatch(addQoute({ values, current_user }));
       resetForm();
       closeModal();
     },

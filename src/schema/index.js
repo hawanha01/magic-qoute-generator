@@ -1,10 +1,10 @@
-import commentStore from "./comment";
-import dislikeStore from "./dislike/dislike";
-import likeStore from "./like";
-import qouteStore from "./qoute";
-import reportStore from "./report";
-import tagStore from "./tag";
-import userStore from "./user";
+import commentStore, { defaultComment } from "./comment";
+import dislikeStore, { defaultDislike } from "./dislike/dislike";
+import likeStore, { defaultLike } from "./like";
+import qouteStore, { defaultQoute } from "./qoute";
+import reportStore, { defaultReport } from "./report";
+import tagStore, { defaultTag } from "./tag";
+import userStore, { defaultUser } from "./user";
 
 const schema = {
   users: userStore,
@@ -15,5 +15,13 @@ const schema = {
   reports: reportStore,
   tags: tagStore,
 };
-
+export const defaultSchema = {
+  defaultUser: defaultUser,
+  defaultQoute: defaultQoute,
+  defaultComment: defaultComment,
+  defaultLike: defaultLike,
+  defaultDislike: defaultDislike,
+  defaultReport: defaultReport,
+  defaultTag: defaultTag,
+};
 export default schema;

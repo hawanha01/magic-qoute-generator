@@ -21,7 +21,7 @@ const userStore = [
     profile_picture: "picture_path2",
     gender: "female",
     email: "example2@gmail.com",
-    password: "password2",
+    password: "password",
     following_ids: [1, 3],
     tag_ids: [1, 2],
     like_ids: [2],
@@ -46,4 +46,19 @@ const userStore = [
   },
 ];
 
+export const defaultUser = {
+  id: null,
+  first_name: null,
+  last_name: null,
+  profile_picture: null,
+  gender: null,
+  email: null,
+  password: null,
+  following_ids: [],
+  tag_ids: [],
+  like_ids: [],
+  dislike_ids: [],
+  report_ids: [],
+  comment_id: [],
+};
 export default userStore;

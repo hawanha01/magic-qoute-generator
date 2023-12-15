@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Qoute from "../../components/qoute";
 import { useDispatch, useSelector } from "react-redux";
 import QouteModal from "../../components/qoute/qouteModal";
-import Modal from "react-modal";
+import ReactModal from "react-modal";
 import { setCurrentUser } from "../../actions/currentUserActions";
 import { useNavigate } from "react-router-dom";
 
@@ -31,9 +31,9 @@ const Dashboard = () => {
       })}
       <button onClick={openModal}>Create new qoute</button>
       <button onClick={handleSignout}>sign out</button>
-      <Modal isOpen={modalIsOpen} onRequestClose={closeModal}>
+      <ReactModal isOpen={modalIsOpen} onRequestClose={closeModal}>
         <QouteModal closeModal={closeModal} />
-      </Modal>
+      </ReactModal>
     </div>
   );
 };

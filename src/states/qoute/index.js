@@ -61,6 +61,12 @@ const qouteSlice = createSlice({
       });
       state.qoutes = updatedQoutes;
     },
+    addCommentToQoute: (state, action) => {
+      const qoute = state.qoutes.find(
+        (qoute) => qoute.id === action.payload.qouteId
+      );
+      qoute.comment_ids = [...qoute.comment_ids, action.payload.commentId];
+    },
     reportQoute: (state, action) => {
       console.log(state, action.payload);
     },

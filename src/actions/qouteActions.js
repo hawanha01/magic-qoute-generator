@@ -9,3 +9,4 @@ export const removeDislikeFromQoute = createAction(
 );
 export const addDislike = createAction("qoutes/addDislike");
 export const reportQoute = createAction("qoutes/reportQoute");
+export const addCommentToQoute = createAction("qoutes/addCommentToQoute");

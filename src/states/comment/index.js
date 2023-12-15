@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import schema from "../../schema";
+import { defaultSchema } from "../../schema";
 
 const initialState = {
   comments: schema.comments,
@@ -10,7 +11,16 @@ const commentSlice = createSlice({
   initialState,
   reducers: {
     addComment: (state, action) => {
-      console.log(state, action.payload);
+      state.comments = [
+        ...state.comments,
+        {
+          ...defaultSchema.defaultComment,
+          ...action.payload.values,
+          user_id: action.payload.current_user.id,
+          qoute_id: action.payload.qouteId,
+          id: state.comments.length + 1,
+        },
+      ];
     },
     deleteComment: (state, action) => {
       console.log(state, action.payload);

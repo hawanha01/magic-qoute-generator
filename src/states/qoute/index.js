@@ -2,36 +2,46 @@ import { createSlice } from "@reduxjs/toolkit";
 import schema from "../../schema";
 import { defaultSchema } from "../../schema";
 const initialState = {
-  qoutes: schema.qoutes,
+  data: schema.qoutes,
 };
 
 const qouteSlice = createSlice({
   name: "qoutes",
   initialState,
   reducers: {
-    addQoute: (state, action) => {
-      state.qoutes = [
-        ...state.qoutes,
+    qouteActionAddQoute: (state, action) => {
+      // let randomId = Math.floor(Math.random() * 10000);
+      // const checkId = state.data.find((qoute) => qoute.id === randomId);
+      // do {
+      //   if (checkId) {
+      //     randomId = Math.floor(Math.random() * 10000);
+      //   }
+      // } while (checkId);
+      state.data = [
+        ...state.data,
         {
           ...defaultSchema.defaultQoute,
           ...action.payload.values,
-          id: state.qoutes.length + 1,
+          id: state.data.length + 1,
           user_id: action.payload.current_user.id,
         },
       ];
     },
-    deleteQoute: (state, action) => {
-      console.log(state, action.payload);
+    qouteActionDeleteQoute: (state, action) => {
+      const updatedLikes = state.data.filter(
+        (qoute) => !(qoute.id === action.payload)
+      );
+      state.data = updatedLikes;
     },
-    addLike: (state, action) => {
-      const qoute = state.qoutes.find(
+    qouteActionAddLikeToQoute: (state, action) => {
+      const qoute = state.data.find(
         (qoute) => qoute.id === action.payload.qouteId
       );
       qoute.like_ids = [...qoute.like_ids, action.payload.likeId];
     },
-    removeLikeFromQoute: (state, action) => {
+    qouteActionRemoveLikeFromQoute: (state, action) => {
       const { qouteId, like } = action.payload;
-      const updatedQoutes = state.qoutes.map((qoute) => {
+      const updatedQoutes = state.data.map((qoute) => {
         if (qoute.id === qouteId) {
           return {
             ...qoute,
@@ -40,17 +50,17 @@ const qouteSlice = createSlice({
         }
         return qoute;
       });
-      state.qoutes = updatedQoutes;
+      state.data = updatedQoutes;
     },
-    addDislike: (state, action) => {
-      const qoute = state.qoutes.find(
+    qouteActionAddDislikeToQoute: (state, action) => {
+      const qoute = state.data.find(
         (qoute) => qoute.id === action.payload.qouteId
       );
       qoute.dislike_ids = [...qoute.dislike_ids, action.payload.dislikeId];
     },
-    removeDislikeFromQoute: (state, action) => {
+    qouteActionRemoveDislikeFromQoute: (state, action) => {
       const { qouteId, dislike } = action.payload;
-      const updatedQoutes = state.qoutes.map((qoute) => {
+      const updatedQoutes = state.data.map((qoute) => {
         if (qoute.id === qouteId) {
           return {
             ...qoute,
@@ -59,15 +69,27 @@ const qouteSlice = createSlice({
         }
         return qoute;
       });
-      state.qoutes = updatedQoutes;
+      state.data = updatedQoutes;
     },
-    addCommentToQoute: (state, action) => {
-      const qoute = state.qoutes.find(
+    qouteActionAddCommentToQoute: (state, action) => {
+      const qoute = state.data.find(
         (qoute) => qoute.id === action.payload.qouteId
       );
       qoute.comment_ids = [...qoute.comment_ids, action.payload.commentId];
     },
-    reportQoute: (state, action) => {
+    qouteActionUpdateQoute: (state, action) => {
+      const updatedQoutes = state.data.map((qoute) => {
+        if (qoute.id === action.payload.qouteId) {
+          return {
+            ...qoute,
+            ...action.payload.values,
+          };
+        }
+        return qoute;
+      });
+      state.data = updatedQoutes;
+    },
+    qouteActionReportQoute: (state, action) => {
       console.log(state, action.payload);
     },
   },

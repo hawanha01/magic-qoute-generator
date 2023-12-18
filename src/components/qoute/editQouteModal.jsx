@@ -1,23 +1,25 @@
 import { useFormik } from "formik";
 import React from "react";
-import qouteValidation from "../../validations/qouteValidation";
 import { useDispatch, useSelector } from "react-redux";
-import { qouteActionAddQoute } from "../../actions/qouteActions";
-const QouteModal = ({ closeModal }) => {
+import qouteValidation from "../../validations/qouteValidation";
+import { qouteActionUpdateQoute } from "../../actions/qouteActions";
+
+const EditQouteModal = ({ closeModal, qouteId }) => {
+  const qoutes = useSelector((state) => state.qoutes.data);
+  const qoute = qoutes.find((qoute) => qoute.id === qouteId);
   const tags = useSelector((state) => state.tags.data);
-  const current_user = useSelector((state) => state.current_user.data);
   const dispatch = useDispatch();
 
   const initialValues = {
-    body: "",
-    tag_ids: [],
+    body: qoute.body,
+    tag_ids: qoute.tag_ids,
   };
 
   const formik = useFormik({
     initialValues,
     validationSchema: qouteValidation,
     onSubmit: (values, { resetForm }) => {
-      dispatch(qouteActionAddQoute({ values, current_user }));
+      dispatch(qouteActionUpdateQoute({ values, qouteId }));
       resetForm();
       closeModal();
     },
@@ -57,10 +59,9 @@ const QouteModal = ({ closeModal }) => {
           ) : null}
         </div>
 
-        <button type="submit">add qoute</button>
+        <button type="submit">update qoute</button>
       </form>
     </div>
   );
 };
-
-export default QouteModal;
+export default EditQouteModal;

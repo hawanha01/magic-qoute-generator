@@ -2,16 +2,18 @@ import { useFormik } from "formik";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { setCurrentUser } from "../../actions/currentUserActions";
+import { CurrentUserSetCurrentUser } from "../../actions/currentUserActions";
 
 const Signin = () => {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.users.users);
+  const users = useSelector((state) => state.users.data);
   const navigate = useNavigate();
+
   const initialValues = {
     email: "",
     password: "",
   };
+
   const formik = useFormik({
     initialValues,
     onSubmit: (values, { resetForm }) => {
@@ -21,7 +23,7 @@ const Signin = () => {
             user.email === values.email && user.password === values.password
         );
         if (user) {
-          dispatch(setCurrentUser(user));
+          dispatch(CurrentUserSetCurrentUser(user));
           navigate("/dashboard");
         }
         resetForm();

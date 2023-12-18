@@ -1,12 +1,27 @@
 import { createAction } from "@reduxjs/toolkit";
 
-export const addQoute = createAction("qoutes/addQoute");
-export const deleteQoute = createAction("qoutes/deleteQoute");
-export const addLike = createAction("qoutes/addLike");
-export const removeLikeFromQoute = createAction("qoutes/removeLikeFromQoute");
-export const removeDislikeFromQoute = createAction(
-  "qoutes/removeDislikeFromQoute"
+export const qouteActionAddQoute = createAction("qoutes/qouteActionAddQoute");
+export const qouteActionUpdateQoute = createAction(
+  "qoutes/qouteActionUpdateQoute"
 );
-export const addDislike = createAction("qoutes/addDislike");
-export const reportQoute = createAction("qoutes/reportQoute");
-export const addCommentToQoute = createAction("qoutes/addCommentToQoute");
+export const qouteActionDeleteQoute = createAction(
+  "qoutes/qouteActionDeleteQoute"
+);
+export const qouteActionAddLikeToQoute = createAction(
+  "qoutes/qouteActionAddLikeToQoute"
+);
+export const qouteActionRemoveLikeFromQoute = createAction(
+  "qoutes/qouteActionRemoveLikeFromQoute"
+);
+export const qouteActionRemoveDislikeFromQoute = createAction(
+  "qoutes/qouteActionRemoveDislikeFromQoute"
+);
+export const qouteActionAddDislikeToQoute = createAction(
+  "qoutes/qouteActionAddDislikeToQoute"
+);
+export const qouteActionReportQoute = createAction(
+  "qoutes/qouteActionReportQoute"
+);
+export const qouteActionAddCommentToQoute = createAction(
+  "qoutes/qouteActionAddCommentToQoute"
+);

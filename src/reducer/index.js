@@ -6,6 +6,7 @@ import tagSlice from "../states/tag";
 import currentUserSlice from "../states/user/current_user";
 import likeSlice from "../states/like";
 import dislikeSlice from "../states/dislike";
+import reportSlice from "../states/report";
 
 const RootReducer = combineReducers({
   users: userSlice.reducer,
@@ -15,6 +16,7 @@ const RootReducer = combineReducers({
   current_user: currentUserSlice.reducer,
   likes: likeSlice.reducer,
   dislikes: dislikeSlice.reducer,
+  reports: reportSlice.reducer,
 });
 
 export default RootReducer;

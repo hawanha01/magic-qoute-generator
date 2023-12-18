@@ -1,4 +1,9 @@
 import { createAction } from "@reduxjs/toolkit";
 
-export const likeQoute = createAction("likes/likeQoute");
-export const removeLike = createAction("likes/removeLike");
+export const likeActionLikeQoute = createAction("likes/likeActionLikeQoute");
+export const likeActionRemoveLikeFromQoute = createAction(
+  "likes/likeActionRemoveLikeFromQoute"
+);
+export const likeActionRemoveLikesOfQoute = createAction(
+  "likes/likeActionRemoveLikesOfQoute"
+);

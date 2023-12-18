@@ -2,15 +2,19 @@ import { createSlice } from "@reduxjs/toolkit";
 import schema from "../../schema";
 
 const initialState = {
-  tags: schema.tags,
+  data: schema.tags,
 };
 
 const tagSlice = createSlice({
   name: "tags",
   initialState,
   reducers: {
-    addTag: (state, action) => {
-      console.log(state, action.payload);
+    TagActionCreateTag: (state, action) => {
+      state.data = [
+        ...state.data,
+        { ...action.payload, id: state.data.length + 1 },
+      ];
+      console.log(state.data.map((tag) => tag.title));
     },
   },
 });

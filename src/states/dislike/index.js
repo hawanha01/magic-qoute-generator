@@ -3,31 +3,37 @@ import schema from "../../schema";
 import { defaultSchema } from "../../schema";
 
 const initialState = {
-  dislikes: schema.dislikes,
+  data: schema.dislikes,
 };
 
 const dislikeSlice = createSlice({
   name: "dislikes",
   initialState,
   reducers: {
-    dislikeQoute: (state, action) => {
-      state.dislikes = [
-        ...state.dislikes,
+    dislikeActionDislikeQoute: (state, action) => {
+      state.data = [
+        ...state.data,
         {
           ...defaultSchema.defaultDislike,
           qoute_id: action.payload.qouteId,
           user_id: action.payload.current_user.id,
-          id: state.dislikes.length + 1,
+          id: state.data.length + 1,
         },
       ];
     },
-    removeDislike: (state, action) => {
+    dislikeActionRemoveDislikeFromQoute: (state, action) => {
       const { qouteId, current_user } = action.payload;
-      const updatedDislikes = state.dislikes.filter(
+      const updatedDislikes = state.data.filter(
         (dislike) =>
           !(dislike.qoute_id === qouteId && dislike.user_id === current_user.id)
       );
-      state.dislikes = updatedDislikes;
+      state.data = updatedDislikes;
+    },
+    dislikeActionRemoveDislikesOfQoute: (state, action) => {
+      const updatedDislikes = state.data.filter(
+        (dislike) => !(dislike.qoute_id === action.payload)
+      );
+      state.data = updatedDislikes;
     },
   },
 });

@@ -1,4 +1,8 @@
 import { createAction } from "@reduxjs/toolkit";
 
-export const setCurrentUser = createAction("current_user/setCurrentUser");
-export const resetCurrentUser = createAction("current_user/resetCurrentUser");
+export const CurrentUserSetCurrentUser = createAction(
+  "current_user/CurrentUserSetCurrentUser"
+);
+export const CurrentUserResetCurrentUser = createAction(
+  "current_user/CurrentUserResetCurrentUser"
+);

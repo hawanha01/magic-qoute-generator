@@ -3,10 +3,11 @@ import React from "react";
 import userValidation from "../../validations/userValidation";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addUser } from "../../actions/userActions";
+import { userActionAddUser } from "../../actions/userActions";
 
 const Signup = () => {
   const dispatch = useDispatch();
+
   const initialValues = {
     first_name: "",
     last_name: "",
@@ -23,7 +24,7 @@ const Signup = () => {
     initialValues,
     validationSchema: userValidation,
     onSubmit: (values, { resetForm }) => {
-      dispatch(addUser(values));
+      dispatch(userActionAddUser(values));
       resetForm();
     },
   });

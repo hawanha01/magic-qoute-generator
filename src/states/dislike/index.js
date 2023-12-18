@@ -23,6 +23,18 @@ const dislikeSlice = createSlice({
       ];
       state.id = state.id + 1;
     },
+    dislikeActionDislikeComment: (state, action) => {
+      state.data = [
+        ...state.data,
+        {
+          ...defaultSchema.defaultDislike,
+          comment_id: action.payload.commentId,
+          user_id: action.payload.current_user.id,
+          id: state.id + 1,
+        },
+      ];
+      state.id = state.id + 1;
+    },
     dislikeActionRemoveDislikeFromQoute: (state, action) => {
       const { qouteId, current_user } = action.payload;
       const updatedDislikes = state.data.filter(
@@ -31,9 +43,26 @@ const dislikeSlice = createSlice({
       );
       state.data = updatedDislikes;
     },
+    dislikeActionRemoveDislikeFromComment: (state, action) => {
+      const { commentId, current_user } = action.payload;
+      const updatedDislikes = state.data.filter(
+        (dislike) =>
+          !(
+            dislike.comment_id === commentId &&
+            dislike.user_id === current_user.id
+          )
+      );
+      state.data = updatedDislikes;
+    },
     dislikeActionRemoveDislikesOfQoute: (state, action) => {
       const updatedDislikes = state.data.filter(
         (dislike) => !(dislike.qoute_id === action.payload)
+      );
+      state.data = updatedDislikes;
+    },
+    dislikeActionRemoveDislikesOfComment: (state, action) => {
+      const updatedDislikes = state.data.filter(
+        (dislike) => !(dislike.comment_id === action.payload)
       );
       state.data = updatedDislikes;
     },

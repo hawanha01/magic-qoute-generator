@@ -11,6 +11,8 @@ const qouteSlice = createSlice({
   initialState,
   reducers: {
     qouteActionAddQoute: (state, action) => {
+      const currentDate = new Date();
+      const currentTime = currentDate.toISOString();
       state.data = [
         ...state.data,
         {
@@ -18,15 +20,17 @@ const qouteSlice = createSlice({
           ...action.payload.values,
           id: state.id + 1,
           user_id: action.payload.current_user.id,
+          date: currentDate.toLocaleDateString(),
+          time: currentTime.slice(11, 19),
         },
       ];
       state.id = state.id + 1;
     },
     qouteActionDeleteQoute: (state, action) => {
-      const updatedLikes = state.data.filter(
+      const updatedQoutes = state.data.filter(
         (qoute) => !(qoute.id === action.payload)
       );
-      state.data = updatedLikes;
+      state.data = updatedQoutes;
     },
     qouteActionAddLikeToQoute: (state, action) => {
       const qoute = state.data.find(

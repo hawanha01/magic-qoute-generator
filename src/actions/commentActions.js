@@ -6,15 +6,24 @@ export const commentActionAddComment = createAction(
 export const commentActionDeleteComment = createAction(
   "comments/commentActionDeleteComment"
 );
-export const commentActionAddLike = createAction(
-  "comments/commentActionAddLike"
+export const commentActionAddLikeToComment = createAction(
+  "comments/commentActionAddLikeToComment"
 );
-export const commentActionAddDislike = createAction(
-  "comments/commentActionAddDislike"
+export const commentActionRemoveLikeFromComment = createAction(
+  "comments/commentActionRemoveLikeFromComment"
+);
+export const commentActionAddDislikeToComment = createAction(
+  "comments/commentActionAddDislikeToComment"
+);
+export const commentActionRemoveDislikeFromComment = createAction(
+  "comments/commentActionRemoveDislikeFromComment"
 );
 export const commentActionAddReport = createAction(
   "comments/commentActionAddReport"
 );
 export const commentActionDeleteCommentsOfQoute = createAction(
   "comments/commentActionDeleteCommentsOfQoute"
+);
+export const commentActionEditComment = createAction(
+  "comments/commentActionEditComment"
 );

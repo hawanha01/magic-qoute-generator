@@ -22,6 +22,7 @@ const Qoute = ({ qouteId }) => {
   const tags = useSelector((state) => state.tags.data);
   const associated_tags = tags.filter((tag) => qoute.tag_ids.includes(tag.id));
   const current_user = useSelector((state) => state.current_user.data);
+  ReactModal.setAppElement("#root");
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -50,7 +51,7 @@ const Qoute = ({ qouteId }) => {
   return (
     <div>
       <div>
-        Body: {qoute.body},tags: {associated_tags.map((tag) => tag.title)}
+        Body: {qoute.body},tags: {associated_tags.map((tag) => `${tag.title}---`)}
         <span>
           {qoute.user_id === current_user.id ? (
             <span>

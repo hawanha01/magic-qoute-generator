@@ -25,18 +25,41 @@ const commentSlice = createSlice({
       state.id = state.id + 1;
     },
     commentActionDeleteComment: (state, action) => {
-      const { qouteId, current_user } = action.payload;
       const updatedComments = state.data.filter(
-        (comment) =>
-          !(comment.qoute_id === qouteId && comment.user_id === current_user.id)
+        (comment) => !(comment.id === action.payload)
       );
       state.data = updatedComments;
     },
-    likeComment: (state, action) => {
-      console.log(state, action.payload);
+    commentActionEditComment: (state, action) => {
+      const updatedComments = state.data.map((comment) => {
+        if (comment.id === action.payload.commentId) {
+          return {
+            ...comment,
+            ...action.payload.values,
+          };
+        }
+        return comment;
+      });
+      state.data = updatedComments;
     },
-    dislikeComment: (state, action) => {
-      console.log(state, action.payload);
+    commentActionAddLikeToComment: (state, action) => {
+      const comment = state.data.find(
+        (comment) => comment.id === action.payload.commentId
+      );
+      comment.like_ids = [...comment.like_ids, action.payload.likeId];
+    },
+    commentActionRemoveLikeFromComment: (state, action) => {
+      const { commentId, like } = action.payload;
+      const updatedComments = state.data.map((comment) => {
+        if (comment.id === commentId) {
+          return {
+            ...comment,
+            like_ids: comment.like_ids.filter((id) => id !== like.id),
+          };
+        }
+        return comment;
+      });
+      state.data = updatedComments;
     },
     reportComment: (state, action) => {
       console.log(state, action.payload);
@@ -45,6 +68,25 @@ const commentSlice = createSlice({
       const updatedComments = state.data.filter(
         (comment) => !(comment.qoute_id === action.payload)
       );
+      state.data = updatedComments;
+    },
+    commentActionAddDislikeToComment: (state, action) => {
+      const comment = state.data.find(
+        (comment) => comment.id === action.payload.commentId
+      );
+      comment.dislike_ids = [...comment.dislike_ids, action.payload.dislikeId];
+    },
+    commentActionRemoveDislikeFromComment: (state, action) => {
+      const { commentId, dislike } = action.payload;
+      const updatedComments = state.data.map((comment) => {
+        if (comment.id === commentId) {
+          return {
+            ...comment,
+            dislike_ids: comment.dislike_ids.filter((id) => id !== dislike.id),
+          };
+        }
+        return comment;
+      });
       state.data = updatedComments;
     },
   },

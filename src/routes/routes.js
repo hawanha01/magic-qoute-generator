@@ -8,6 +8,9 @@ import FollowingUser from "../components/following/followingUser";
 import FollowingTag from "../components/following/followingTag";
 import FollowingUserQoutes from "../components/following/followingUserQoutes";
 import FollowingTagQoutes from "../components/following/followingTagQoutes";
+import UserProfile from "../components/users/userProfile";
+import UserFollowers from "../components/following/userFollowers";
+import Search from "../pages/search";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +34,10 @@ const router = createBrowserRouter([
     element: <FollowingUser />,
   },
   {
+    path: "/user/:userId/followers",
+    element: <UserFollowers />,
+  },
+  {
     path: "/tags",
     element: <AllTags />,
   },
@@ -45,6 +52,14 @@ const router = createBrowserRouter([
   {
     path: "/user/:userId/tags/qoutes",
     element: <FollowingTagQoutes />,
+  },
+  {
+    path: "/users/:userId",
+    element: <UserProfile />,
+  },
+  {
+    path: "/search",
+    element: <Search />,
   },
 ]);
 

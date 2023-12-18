@@ -19,3 +19,4 @@ export const userActionFollowUser = createAction("users/userActionFollowUser");
 export const userActionUnfollowUser = createAction(
   "users/userActionUnfollowUser"
 );
+export const userActionEditUser = createAction("users/userActionEditUser");

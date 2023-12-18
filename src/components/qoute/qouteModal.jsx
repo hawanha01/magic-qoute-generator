@@ -40,18 +40,28 @@ const QouteModal = ({ closeModal }) => {
 
         <div>
           <label htmlFor="tag_ids">Tags</label>
-          <select
-            value={formik.tag_ids}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            name="tag_ids"
-          >
-            {tags.map((tag) => (
-              <option key={tag.id} value={tag.id}>
-                {tag.title}
-              </option>
-            ))}
-          </select>
+          {tags.map((tag) => (
+            <div key={tag.id}>
+              <input
+                type="checkbox"
+                id={tag.id}
+                name="tag_ids"
+                value={tag.id}
+                checked={formik.values.tag_ids.includes(tag.id)}
+                onChange={(e) => {
+                  const isChecked = e.target.checked;
+                  formik.setFieldValue(
+                    "tag_ids",
+                    isChecked
+                      ? [...formik.values.tag_ids, tag.id]
+                      : formik.values.tag_ids.filter((id) => id !== tag.id)
+                  );
+                }}
+                onBlur={formik.handleBlur}
+              />
+              <label htmlFor={tag.id}>{tag.title}</label>
+            </div>
+          ))}
           {formik.errors.tag_ids && formik.touched.tag_ids ? (
             <p className="form-error">{formik.errors.tag_ids}</p>
           ) : null}

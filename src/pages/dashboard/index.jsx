@@ -14,6 +14,7 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const current_user = useSelector((state) => state.current_user.data);
+  ReactModal.setAppElement("#root");
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -46,6 +47,7 @@ const Dashboard = () => {
           <Link to={`/user/${current_user.id}/followings`}>
             following users
           </Link>
+          <Link to={`/user/${current_user.id}/followers`}>Followers</Link>
           <Link to="/tags">all tags</Link>
           <Link to={`/user/${current_user.id}/tags`}>following tags</Link>
           <Link to={`/user/${current_user.id}/followings/qoutes`}>
@@ -53,6 +55,10 @@ const Dashboard = () => {
           </Link>
           <Link to={`/user/${current_user.id}/tags/qoutes`}>
             posts of following tags
+          </Link>
+          <Link to={`/users/${current_user.id}`}>Go to profile</Link>
+          <Link to="/search">
+            search
           </Link>
           <ReactModal isOpen={tagModalIsOpen} onRequestClose={closeTagModal}>
             <TagModal closeModal={closeTagModal} />

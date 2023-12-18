@@ -62,6 +62,18 @@ const userSlice = createSlice({
       );
       user.following_ids = updateFollowings;
     },
+    userActionEditUser: (state, action) => {
+      const updatedusers = state.data.map((user) => {
+        if (user.id === action.payload.currentUser.id) {
+          return {
+            ...user,
+            ...action.payload.values,
+          };
+        }
+        return user;
+      });
+      state.data = updatedusers;
+    },
   },
 });
 

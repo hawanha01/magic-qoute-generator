@@ -19,8 +19,8 @@ export const qouteActionRemoveDislikeFromQoute = createAction(
 export const qouteActionAddDislikeToQoute = createAction(
   "qoutes/qouteActionAddDislikeToQoute"
 );
-export const qouteActionReportQoute = createAction(
-  "qoutes/qouteActionReportQoute"
+export const qouteActionAddReportToQoute = createAction(
+  "qoutes/qouteActionAddReportToQoute"
 );
 export const qouteActionAddCommentToQoute = createAction(
   "qoutes/qouteActionAddCommentToQoute"

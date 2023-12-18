@@ -7,9 +7,12 @@ import { likeActionRemoveLikesOfComment } from "../../actions/likeAction";
 import { dislikeActionRemoveDislikesOfComment } from "../../actions/dislikeAction";
 import { commentActionDeleteComment } from "../../actions/commentActions";
 import EditCommentModal from "./editCommantModal";
+import CommentReportModal from "../report/commentReportModal";
+import Report from "../report";
 
 const Comment = ({ commentId }) => {
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
+  const [reportModalIsOpen, setReportModalIsOpen] = useState(false);
   const comments = useSelector((state) => state.comments.data);
   const current_user = useSelector((state) => state.current_user.data);
   const dispatch = useDispatch();
@@ -24,6 +27,12 @@ const Comment = ({ commentId }) => {
     setEditModalIsOpen(false);
   };
 
+  const openReportModal = () => {
+    setReportModalIsOpen(true);
+  };
+  const closeReportModal = () => {
+    setReportModalIsOpen(false);
+  };
   const handleDelete = () => {
     dispatch(likeActionRemoveLikesOfComment(commentId));
     dispatch(dislikeActionRemoveDislikesOfComment(commentId));
@@ -42,6 +51,21 @@ const Comment = ({ commentId }) => {
               </span>
             ) : null}
           </span>
+          {current_user.id !== comment.user_id ? (
+            <button onClick={openReportModal}>add report</button>
+          ) : null}
+          {comment.report_ids.map((reportId) => (
+            <Report key={reportId} reportId={reportId} />
+          ))}
+          <ReactModal
+            isOpen={reportModalIsOpen}
+            onRequestClose={closeReportModal}
+          >
+            <CommentReportModal
+              closeModal={closeReportModal}
+              commentId={commentId}
+            />
+          </ReactModal>
           <ReactModal isOpen={editModalIsOpen} onRequestClose={closeEditModal}>
             <EditCommentModal
               closeModal={closeEditModal}

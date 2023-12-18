@@ -11,11 +11,13 @@ import { likeActionRemoveLikesOfQoute } from "../../actions/likeAction";
 import { dislikeActionRemoveDislikesOfQoute } from "../../actions/dislikeAction";
 import { commentActionDeleteCommentsOfQoute } from "../../actions/commentActions";
 import { reportActionDeleteReportsOfQoute } from "../../actions/reportActions";
+import Report from "../report";
+import ReportModal from "../report/reportModal";
 
 const Qoute = ({ qouteId }) => {
-  
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
+  const [reportModalIsOpen, setReportModalIsOpen] = useState(false);
   const dispatch = useDispatch();
   const qoutes = useSelector((state) => state.qoutes.data);
   const qoute = qoutes.find((qoute) => qoute.id === qouteId);
@@ -40,6 +42,14 @@ const Qoute = ({ qouteId }) => {
     setEditModalIsOpen(false);
   };
 
+  const openReportModal = () => {
+    setReportModalIsOpen(true);
+  };
+
+  const closeReportModal = () => {
+    setReportModalIsOpen(false);
+  };
+
   const handleDelete = () => {
     dispatch(likeActionRemoveLikesOfQoute(qouteId));
     dispatch(dislikeActionRemoveDislikesOfQoute(qouteId));
@@ -51,7 +61,8 @@ const Qoute = ({ qouteId }) => {
   return (
     <div>
       <div>
-        Body: {qoute.body},tags: {associated_tags.map((tag) => `${tag.title}---`)}
+        Body: {qoute.body},tags:{" "}
+        {associated_tags.map((tag) => `${tag.title}---`)}
         <span>
           {qoute.user_id === current_user.id ? (
             <span>
@@ -65,11 +76,20 @@ const Qoute = ({ qouteId }) => {
         <Like qouteId={qouteId} />
         <Dislike qouteId={qouteId} />
       </div>
-      {qoute.comment_ids.map((comment_id) => (
-        <Comment key={comment_id} commentId={comment_id} />
+      {current_user.id !== qoute.user_id ? (
+        <button onClick={openReportModal}>report the qoute</button>
+      ) : null}
+      {qoute.comment_ids.map((commentId) => (
+        <Comment key={commentId} commentId={commentId} />
       ))}
       <button onClick={openModal}>new comment</button>
+      {qoute.report_ids.map((reportId) => (
+        <Report key={reportId} reportId={reportId} />
+      ))}
 
+      <ReactModal isOpen={reportModalIsOpen} onRequestClose={closeReportModal}>
+        <ReportModal closeModal={closeReportModal} qouteId={qouteId} />
+      </ReactModal>
       <ReactModal isOpen={editModalIsOpen} onRequestClose={closeEditModal}>
         <EditQouteModal closeModal={closeEditModal} qouteId={qouteId} />
       </ReactModal>

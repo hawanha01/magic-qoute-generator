@@ -76,6 +76,12 @@ const qouteSlice = createSlice({
       );
       qoute.comment_ids = [...qoute.comment_ids, action.payload.commentId];
     },
+    qouteActionAddReportToQoute: (state, action) => {
+      const qoute = state.data.find(
+        (qoute) => qoute.id === action.payload.qouteId
+      );
+      qoute.report_ids = [...qoute.report_ids, action.payload.reportId];
+    },
     qouteActionUpdateQoute: (state, action) => {
       const updatedQoutes = state.data.map((qoute) => {
         if (qoute.id === action.payload.qouteId) {

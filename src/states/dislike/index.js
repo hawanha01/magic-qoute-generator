@@ -4,6 +4,7 @@ import { defaultSchema } from "../../schema";
 
 const initialState = {
   data: schema.dislikes,
+  id: 0,
 };
 
 const dislikeSlice = createSlice({
@@ -17,9 +18,10 @@ const dislikeSlice = createSlice({
           ...defaultSchema.defaultDislike,
           qoute_id: action.payload.qouteId,
           user_id: action.payload.current_user.id,
-          id: state.data.length + 1,
+          id: state.id + 1,
         },
       ];
+      state.id = state.id + 1;
     },
     dislikeActionRemoveDislikeFromQoute: (state, action) => {
       const { qouteId, current_user } = action.payload;

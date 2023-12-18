@@ -3,6 +3,7 @@ import schema from "../../schema";
 
 const initialState = {
   data: schema.reports,
+  id: 0,
 };
 
 const reportSlice = createSlice({

@@ -12,10 +12,11 @@ import {
 const Dislike = ({ qouteId }) => {
   const [isDislike, setIsDislike] = useState();
   const qoutes = useSelector((state) => state.qoutes.data);
-  const qoute = qoutes.find((qoute) => qoute.id === qouteId);
-  const dispatch = useDispatch();
   const current_user = useSelector((state) => state.current_user.data);
   const dislikes = useSelector((state) => state.dislikes.data);
+  const likeId = useSelector((state) => state.dislikes.id);
+  const dispatch = useDispatch();
+  const qoute = qoutes.find((qoute) => qoute.id === qouteId);
 
   const dislike = dislikes.find(
     (dislike) =>
@@ -36,7 +37,7 @@ const Dislike = ({ qouteId }) => {
       dispatch(
         qouteActionAddDislikeToQoute({
           qouteId,
-          dislikeId: dislikes.length + 1,
+          dislikeId: likeId + 1,
         })
       );
       setIsDislike(!isDislike);

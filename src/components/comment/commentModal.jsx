@@ -8,7 +8,7 @@ import { qouteActionAddCommentToQoute } from "../../actions/qouteActions";
 const CommentModal = ({ closeModal, qouteId }) => {
   const dispatch = useDispatch();
   const current_user = useSelector((state) => state.current_user.data);
-  const comments = useSelector((state) => state.comments.data);
+  const commentId = useSelector((state) => state.comments.id);
 
   const initialValues = {
     body: "",
@@ -21,7 +21,7 @@ const CommentModal = ({ closeModal, qouteId }) => {
       dispatch(commentActionAddComment({ values, current_user, qouteId }));
       dispatch(
         qouteActionAddCommentToQoute({
-          commentId: comments.length + 1,
+          commentId: commentId + 1,
           qouteId,
         })
       );

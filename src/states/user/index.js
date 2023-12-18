@@ -3,27 +3,22 @@ import schema from "../../schema";
 import { defaultSchema } from "../../schema";
 const initialState = {
   data: schema.users,
+  id: 0,
 };
 const userSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
     userActionAddUser: (state, action) => {
-      // let randomId = Math.floor(Math.random() * 10000);
-      // const checkId = state.data.find((qoute) => qoute.id === randomId);
-      // do {
-      //   if (checkId) {
-      //     randomId = Math.floor(Math.random() * 10000);
-      //   }
-      // } while (checkId);
       state.data = [
         ...state.data,
         {
           ...defaultSchema.defaultUser,
           ...action.payload,
-          id: state.data.length + 1,
+          id: state.id + 1,
         },
       ];
+      state.id = state.id + 1;
     },
     likeQoute: (state, action) => {
       console.log(state.data.users, action.payload);

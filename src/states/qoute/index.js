@@ -3,6 +3,7 @@ import schema from "../../schema";
 import { defaultSchema } from "../../schema";
 const initialState = {
   data: schema.qoutes,
+  id: 0,
 };
 
 const qouteSlice = createSlice({
@@ -10,22 +11,16 @@ const qouteSlice = createSlice({
   initialState,
   reducers: {
     qouteActionAddQoute: (state, action) => {
-      // let randomId = Math.floor(Math.random() * 10000);
-      // const checkId = state.data.find((qoute) => qoute.id === randomId);
-      // do {
-      //   if (checkId) {
-      //     randomId = Math.floor(Math.random() * 10000);
-      //   }
-      // } while (checkId);
       state.data = [
         ...state.data,
         {
           ...defaultSchema.defaultQoute,
           ...action.payload.values,
-          id: state.data.length + 1,
+          id: state.id + 1,
           user_id: action.payload.current_user.id,
         },
       ];
+      state.id = state.id + 1;
     },
     qouteActionDeleteQoute: (state, action) => {
       const updatedLikes = state.data.filter(

@@ -4,6 +4,7 @@ import { defaultSchema } from "../../schema";
 
 const initialState = {
   data: schema.likes,
+  id: 0,
 };
 
 const likeSlice = createSlice({
@@ -17,9 +18,10 @@ const likeSlice = createSlice({
           ...defaultSchema.defaultLike,
           qoute_id: action.payload.qouteId,
           user_id: action.payload.current_user.id,
-          id: state.data.length + 1,
+          id: state.id + 1,
         },
       ];
+      state.id = state.id + 1;
     },
     likeActionRemoveLikeFromQoute: (state, action) => {
       const { qouteId, current_user } = action.payload;

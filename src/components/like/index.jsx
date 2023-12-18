@@ -12,10 +12,11 @@ import {
 const Like = ({ qouteId }) => {
   const [isLike, setIsLike] = useState();
   const qoutes = useSelector((state) => state.qoutes.data);
-  const qoute = qoutes.find((qoute) => qoute.id === qouteId);
-  const dispatch = useDispatch();
   const current_user = useSelector((state) => state.current_user.data);
   const likes = useSelector((state) => state.likes.data);
+  const likeId = useSelector((state) => state.likes.id);
+  const dispatch = useDispatch();
+  const qoute = qoutes.find((qoute) => qoute.id === qouteId);
 
   const like = likes.find(
     (like) => like.user_id === current_user.id && like.qoute_id === qouteId
@@ -33,7 +34,7 @@ const Like = ({ qouteId }) => {
     } else {
       dispatch(likeActionLikeQoute({ qouteId, current_user }));
       dispatch(
-        qouteActionAddLikeToQoute({ qouteId, likeId: likes.length + 1 })
+        qouteActionAddLikeToQoute({ qouteId, likeId: likeId + 1 })
       );
       setIsLike(!isLike);
     }

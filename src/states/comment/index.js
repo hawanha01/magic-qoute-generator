@@ -4,6 +4,7 @@ import { defaultSchema } from "../../schema";
 
 const initialState = {
   data: schema.comments,
+  id: 0,
 };
 
 const commentSlice = createSlice({
@@ -11,13 +12,6 @@ const commentSlice = createSlice({
   initialState,
   reducers: {
     commentActionAddComment: (state, action) => {
-      // let randomId = Math.floor(Math.random() * 10000);
-      // const checkId = state.data.find((qoute) => qoute.id === randomId);
-      // do {
-      //   if (checkId) {
-      //     randomId = Math.floor(Math.random() * 10000);
-      //   }
-      // } while (checkId);
       state.data = [
         ...state.data,
         {
@@ -25,9 +19,10 @@ const commentSlice = createSlice({
           ...action.payload.values,
           user_id: action.payload.current_user.id,
           qoute_id: action.payload.qouteId,
-          id: state.data.length + 1,
+          id: state.id + 1,
         },
       ];
+      state.id = state.id + 1;
     },
     commentActionDeleteComment: (state, action) => {
       const { qouteId, current_user } = action.payload;

@@ -2,16 +2,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { userActionUnfollowTag } from "../../actions/userActions";
 
-const FollowingTag = ({}) => {
+const FollowingTag = () => {
   const userId = useParams();
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users.data);
   const tags = useSelector((state) => state.tags.data);
   const user = users.find((user) => user.id === parseInt(userId.userId));
   const handleUnfollow = (tagId) => {
-    dispatch(
-      userActionUnfollowTag({ userId: parseInt(userId.userId), tagId })
-    );
+    dispatch(userActionUnfollowTag({ userId: parseInt(userId.userId), tagId }));
   };
   return (
     <div>
@@ -20,9 +18,7 @@ const FollowingTag = ({}) => {
           <li key={tagId}>
             {tags.find((tag) => tag.id === tagId).title}
             <span>
-              <button onClick={() => handleUnfollow(tagId)}>
-                unfollow
-              </button>
+              <button onClick={() => handleUnfollow(tagId)}>unfollow</button>
             </span>
           </li>
         ))}

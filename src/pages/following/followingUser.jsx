@@ -7,20 +7,20 @@ const FollowingUser = () => {
   const users = useSelector((state) => state.users.data);
   const dispatch = useDispatch();
   const user = users.find((user) => user.id === parseInt(userId.userId));
-  const handleUnfollow = (following_id) => {
+  const handleUnfollow = (followingId) => {
     dispatch(
-      userActionUnfollowUser({ userId: parseInt(userId.userId), following_id })
+      userActionUnfollowUser({ userId: parseInt(userId.userId), followingId })
     );
   };
 
   return (
     <div>
       <ul>
-        {user.following_ids.map((following_id) => (
-          <li key={following_id}>
-            {users.find((user) => user.id === following_id).name}
+        {user.followingIds.map((followingId) => (
+          <li key={followingId}>
+            {users.find((user) => user.id === followingId).name}
             <span>
-              <button onClick={() => handleUnfollow(following_id)}>
+              <button onClick={() => handleUnfollow(followingId)}>
                 unfollow
               </button>
             </span>

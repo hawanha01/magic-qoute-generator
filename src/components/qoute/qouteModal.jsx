@@ -5,19 +5,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { qouteActionAddQoute } from "../../actions/qouteActions";
 const QouteModal = ({ closeModal }) => {
   const tags = useSelector((state) => state.tags.data);
-  const current_user = useSelector((state) => state.current_user.data);
+  const currentUser = useSelector((state) => state.currentUser.data);
   const dispatch = useDispatch();
 
   const initialValues = {
     body: "",
-    tag_ids: [],
+    tagIds: [],
   };
 
   const formik = useFormik({
     initialValues,
     validationSchema: qouteValidation,
     onSubmit: (values, { resetForm }) => {
-      dispatch(qouteActionAddQoute({ values, current_user }));
+      dispatch(qouteActionAddQoute({ values, currentUser }));
       resetForm();
       closeModal();
     },
@@ -39,22 +39,22 @@ const QouteModal = ({ closeModal }) => {
         </div>
 
         <div>
-          <label htmlFor="tag_ids">Tags</label>
+          <label htmlFor="tagIds">Tags</label>
           {tags.map((tag) => (
             <div key={tag.id}>
               <input
                 type="checkbox"
                 id={tag.id}
-                name="tag_ids"
+                name="tagIds"
                 value={tag.id}
-                checked={formik.values.tag_ids.includes(tag.id)}
+                checked={formik.values.tagIds.includes(tag.id)}
                 onChange={(e) => {
                   const isChecked = e.target.checked;
                   formik.setFieldValue(
-                    "tag_ids",
+                    "tagIds",
                     isChecked
-                      ? [...formik.values.tag_ids, tag.id]
-                      : formik.values.tag_ids.filter((id) => id !== tag.id)
+                      ? [...formik.values.tagIds, tag.id]
+                      : formik.values.tagIds.filter((id) => id !== tag.id)
                   );
                 }}
                 onBlur={formik.handleBlur}
@@ -62,8 +62,8 @@ const QouteModal = ({ closeModal }) => {
               <label htmlFor={tag.id}>{tag.title}</label>
             </div>
           ))}
-          {formik.errors.tag_ids && formik.touched.tag_ids ? (
-            <p className="form-error">{formik.errors.tag_ids}</p>
+          {formik.errors.tagIds && formik.touched.tagIds ? (
+            <p className="form-error">{formik.errors.tagIds}</p>
           ) : null}
         </div>
 

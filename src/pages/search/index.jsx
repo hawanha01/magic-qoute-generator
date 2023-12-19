@@ -13,14 +13,14 @@ const Search = () => {
   useEffect(() => {
     const filteredQoutes = qoutes.filter((qoute) => {
       const authorMatch =
-        qoute.user_id &&
+        qoute.userId &&
         (users
-          .find((user) => user.id === qoute.user_id)
-          .first_name.toLowerCase()
+          .find((user) => user.id === qoute.userId)
+          .firstName.toLowerCase()
           .includes(searchQuery.toLowerCase()) ||
           users
-            .find((user) => user.id === qoute.user_id)
-            .last_name.toLowerCase()
+            .find((user) => user.id === qoute.userId)
+            .lastName.toLowerCase()
             .includes(searchQuery.toLowerCase()));
 
       const qouteMatch = qoute.body
@@ -28,8 +28,8 @@ const Search = () => {
         .includes(searchQuery.toLowerCase());
 
       const tagMatch =
-        Array.isArray(qoute.tag_ids) &&
-        qoute.tag_ids.some((tagId) => {
+        Array.isArray(qoute.tagIds) &&
+        qoute.tagIds.some((tagId) => {
           const tag = tags.find((tag) => tag.id === tagId);
           return (
             tag && tag.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -46,11 +46,11 @@ const Search = () => {
             new Date(b.date + " " + b.time) - new Date(a.date + " " + a.time)
           );
         case "likes":
-          return b.like_ids.length - a.like_ids.length;
+          return b.likeIds.length - a.likeIds.length;
         case "dislikes":
-          return b.dislike_ids.length - a.dislike_ids.length;
+          return b.dislikeIds.length - a.dislikeIds.length;
         case "comments":
-          return b.comment_ids.length - a.comment_ids.length;
+          return b.commentIds.length - a.commentIds.length;
         default:
           return 0;
       }
@@ -80,14 +80,14 @@ const Search = () => {
             <p>{qoute.body}</p>
             <p>
               Author:{" "}
-              {qoute.user_id
-                ? `${users.find((user) => user.id === qoute.user_id).name}`
+              {qoute.userId
+                ? `${users.find((user) => user.id === qoute.userId).name}`
                 : "Unknown"}
             </p>
             <p>Date: {qoute.date}</p>
-            <p>Likes: {qoute.like_ids.length}</p>
-            <p>Dislikes: {qoute.dislike_ids.length}</p>
-            <p>Comments: {qoute.comment_ids.length}</p>
+            <p>Likes: {qoute.likeIds.length}</p>
+            <p>Dislikes: {qoute.dislikeIds.length}</p>
+            <p>Comments: {qoute.commentIds.length}</p>
           </li>
         ))}
       </ul>

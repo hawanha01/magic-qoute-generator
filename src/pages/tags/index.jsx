@@ -4,10 +4,10 @@ import { userActionFollowTag } from "../../actions/userActions";
 
 const AllTags = () => {
   const tags = useSelector((state) => state.tags.data);
-  const current_user = useSelector((state) => state.current_user.data);
+  const currentUser = useSelector((state) => state.currentUser.data);
   const dispatch = useDispatch();
   const handleFollow = (tagId) => {
-    dispatch(userActionFollowTag({ tagId, current_user: current_user }));
+    dispatch(userActionFollowTag({ tagId, currentUser: currentUser }));
   };
   return (
     <div>

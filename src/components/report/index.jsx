@@ -6,7 +6,7 @@ const Report = ({ reportId }) => {
   const report = reports.find((report) => report.id === reportId);
   return (
     <div>
-      <strong>{users.find((user) => user.id === report.user_id).name}:</strong>
+      <strong>{users.find((user) => user.id === report.userId).name}:</strong>
       <p>{report.description}</p>
     </div>
   );

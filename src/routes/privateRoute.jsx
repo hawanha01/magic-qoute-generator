@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const PrivateRoute = ({ element }) => {
-  const currentUser = useSelector((state) => state.current_user.data);
+  const currentUser = useSelector((state) => state.currentUser.data);
   const navigate = useNavigate();
 
   useEffect(() => {

@@ -12,7 +12,7 @@ const EditQouteModal = ({ closeModal, qouteId }) => {
 
   const initialValues = {
     body: qoute.body,
-    tag_ids: qoute.tag_ids,
+    tagIds: qoute.tagIds,
   };
 
   const formik = useFormik({
@@ -41,22 +41,22 @@ const EditQouteModal = ({ closeModal, qouteId }) => {
         </div>
 
         <div>
-          <label htmlFor="tag_ids">Tags</label>
+          <label htmlFor="tagIds">Tags</label>
           {tags.map((tag) => (
             <div key={tag.id}>
               <input
                 type="checkbox"
                 id={tag.id}
-                name="tag_ids"
+                name="tagIds"
                 value={tag.id}
-                checked={formik.values.tag_ids.includes(tag.id)}
+                checked={formik.values.tagIds.includes(tag.id)}
                 onChange={(e) => {
                   const isChecked = e.target.checked;
                   formik.setFieldValue(
-                    "tag_ids",
+                    "tagIds",
                     isChecked
-                      ? [...formik.values.tag_ids, tag.id]
-                      : formik.values.tag_ids.filter((id) => id !== tag.id)
+                      ? [...formik.values.tagIds, tag.id]
+                      : formik.values.tagIds.filter((id) => id !== tag.id)
                   );
                 }}
                 onBlur={formik.handleBlur}
@@ -64,8 +64,8 @@ const EditQouteModal = ({ closeModal, qouteId }) => {
               <label htmlFor={tag.id}>{tag.title}</label>
             </div>
           ))}
-          {formik.errors.tag_ids && formik.touched.tag_ids ? (
-            <p className="form-error">{formik.errors.tag_ids}</p>
+          {formik.errors.tagIds && formik.touched.tagIds ? (
+            <p className="form-error">{formik.errors.tagIds}</p>
           ) : null}
         </div>
 

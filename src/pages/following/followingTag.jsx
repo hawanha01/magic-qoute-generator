@@ -14,7 +14,7 @@ const FollowingTag = () => {
   return (
     <div>
       <ul>
-        {user.tag_ids.map((tagId) => (
+        {user.tagIds.map((tagId) => (
           <li key={tagId}>
             {tags.find((tag) => tag.id === tagId).title}
             <span>

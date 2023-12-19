@@ -2,11 +2,11 @@ const commentStore = [];
 
 export const defaultComment = {
   id: null,
-  user_id: null,
-  qoute_id: null,
+  userId: null,
+  qouteId: null,
   body: null,
-  like_ids: [],
-  dislike_ids: [],
+  likeIds: [],
+  dislikeIds: [],
 };
 
 export default commentStore;

@@ -12,7 +12,7 @@ import {
 const Dislike = ({ qouteId }) => {
   const [isDislike, setIsDislike] = useState();
   const qoutes = useSelector((state) => state.qoutes.data);
-  const current_user = useSelector((state) => state.current_user.data);
+  const currentUser = useSelector((state) => state.currentUser.data);
   const dislikes = useSelector((state) => state.dislikes.data);
   const likeId = useSelector((state) => state.dislikes.id);
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const Dislike = ({ qouteId }) => {
 
   const dislike = dislikes.find(
     (dislike) =>
-      dislike.user_id === current_user.id && dislike.qoute_id === qouteId
+      dislike.userId === currentUser.id && dislike.qouteId === qouteId
   );
 
   useEffect(() => {
@@ -29,11 +29,11 @@ const Dislike = ({ qouteId }) => {
 
   const handleDislike = () => {
     if (dislike) {
-      dispatch(dislikeActionRemoveDislikeFromQoute({ qouteId, current_user }));
+      dispatch(dislikeActionRemoveDislikeFromQoute({ qouteId, currentUser }));
       dispatch(qouteActionRemoveDislikeFromQoute({ qouteId, dislike }));
       setIsDislike(!isDislike);
     } else {
-      dispatch(dislikeActionDislikeQoute({ qouteId, current_user }));
+      dispatch(dislikeActionDislikeQoute({ qouteId, currentUser }));
       dispatch(
         qouteActionAddDislikeToQoute({
           qouteId,
@@ -47,7 +47,7 @@ const Dislike = ({ qouteId }) => {
   return (
     <button onClick={() => handleDislike()}>
       {isDislike ? <span>disliked</span> : <span>dislike</span>}
-      {qoute.dislike_ids.length}
+      {qoute.dislikeIds.length}
     </button>
   );
 };

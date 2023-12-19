@@ -7,7 +7,7 @@ import { qouteActionAddCommentToQoute } from "../../actions/qouteActions";
 
 const CommentModal = ({ closeModal, qouteId }) => {
   const dispatch = useDispatch();
-  const current_user = useSelector((state) => state.current_user.data);
+  const currentUser = useSelector((state) => state.currentUser.data);
   const commentId = useSelector((state) => state.comments.id);
 
   const initialValues = {
@@ -18,7 +18,7 @@ const CommentModal = ({ closeModal, qouteId }) => {
     initialValues,
     validationSchema: commentValidation,
     onSubmit: (values, { resetForm }) => {
-      dispatch(commentActionAddComment({ values, current_user, qouteId }));
+      dispatch(commentActionAddComment({ values, currentUser, qouteId }));
       dispatch(
         qouteActionAddCommentToQoute({
           commentId: commentId + 1,

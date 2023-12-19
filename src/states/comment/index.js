@@ -17,8 +17,8 @@ const commentSlice = createSlice({
         {
           ...defaultSchema.defaultComment,
           ...action.payload.values,
-          user_id: action.payload.current_user.id,
-          qoute_id: action.payload.qouteId,
+          userId: action.payload.currentUser.id,
+          qouteId: action.payload.qouteId,
           id: state.id + 1,
         },
       ];
@@ -46,7 +46,7 @@ const commentSlice = createSlice({
       const comment = state.data.find(
         (comment) => comment.id === action.payload.commentId
       );
-      comment.like_ids = [...comment.like_ids, action.payload.likeId];
+      comment.likeIds = [...comment.likeIds, action.payload.likeId];
     },
     commentActionRemoveLikeFromComment: (state, action) => {
       const { commentId, like } = action.payload;
@@ -54,7 +54,7 @@ const commentSlice = createSlice({
         if (comment.id === commentId) {
           return {
             ...comment,
-            like_ids: comment.like_ids.filter((id) => id !== like.id),
+            likeIds: comment.likeIds.filter((id) => id !== like.id),
           };
         }
         return comment;
@@ -63,7 +63,7 @@ const commentSlice = createSlice({
     },
     commentActionDeleteCommentsOfQoute: (state, action) => {
       const updatedComments = state.data.filter(
-        (comment) => !(comment.qoute_id === action.payload)
+        (comment) => !(comment.qouteId === action.payload)
       );
       state.data = updatedComments;
     },
@@ -71,7 +71,7 @@ const commentSlice = createSlice({
       const comment = state.data.find(
         (comment) => comment.id === action.payload.commentId
       );
-      comment.dislike_ids = [...comment.dislike_ids, action.payload.dislikeId];
+      comment.dislikeIds = [...comment.dislikeIds, action.payload.dislikeId];
     },
     commentActionRemoveDislikeFromComment: (state, action) => {
       const { commentId, dislike } = action.payload;
@@ -79,7 +79,7 @@ const commentSlice = createSlice({
         if (comment.id === commentId) {
           return {
             ...comment,
-            dislike_ids: comment.dislike_ids.filter((id) => id !== dislike.id),
+            dislikeIds: comment.dislikeIds.filter((id) => id !== dislike.id),
           };
         }
         return comment;

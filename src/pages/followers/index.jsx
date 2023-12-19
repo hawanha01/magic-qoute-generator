@@ -7,7 +7,7 @@ const Followers = () => {
   const currentUser = users.find((user) => user.id === parseInt(userId.userId));
   const uniqueFollowerIds = new Set();
   const followerUsers = users
-    .filter((user) => user.following_ids.includes(currentUser.id))
+    .filter((user) => user.followingIds.includes(currentUser.id))
     .filter((follower) => {
       if (!uniqueFollowerIds.has(follower.id)) {
         uniqueFollowerIds.add(follower.id);

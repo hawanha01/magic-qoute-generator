@@ -21,9 +21,11 @@ const Qoute = ({ qouteId }) => {
   const dispatch = useDispatch();
   const qoutes = useSelector((state) => state.qoutes.data);
   const qoute = qoutes.find((qoute) => qoute.id === qouteId);
+  const users = useSelector((state) => state.users.data);
+  const user = users.find((user) => user.id === qoute.userId);
   const tags = useSelector((state) => state.tags.data);
-  const associated_tags = tags.filter((tag) => qoute.tag_ids.includes(tag.id));
-  const current_user = useSelector((state) => state.current_user.data);
+  const associatedTags = tags.filter((tag) => qoute.tagIds.includes(tag.id));
+  const currentUser = useSelector((state) => state.currentUser.data);
   ReactModal.setAppElement("#root");
 
   const openModal = () => {
@@ -60,12 +62,12 @@ const Qoute = ({ qouteId }) => {
 
   return (
     <div>
-      <div>{current_user.name}</div>
+      <div>{user.name}</div>
       <div>
         Body: {qoute.body},tags:{" "}
-        {associated_tags.map((tag) => `${tag.title}---`)}
+        {associatedTags.map((tag) => `${tag.title}---`)}
         <span>
-          {qoute.user_id === current_user.id ? (
+          {qoute.userId === currentUser.id ? (
             <span>
               <button onClick={openEditModal}>edit</button>
               <button onClick={() => handleDelete()}>delete</button>
@@ -77,14 +79,14 @@ const Qoute = ({ qouteId }) => {
         <Like qouteId={qouteId} />
         <Dislike qouteId={qouteId} />
       </div>
-      {current_user.id !== qoute.user_id ? (
+      {currentUser.id !== qoute.userId ? (
         <button onClick={openReportModal}>report the qoute</button>
       ) : null}
-      {qoute.comment_ids.map((commentId) => (
+      {qoute.commentIds.map((commentId) => (
         <Comment key={commentId} commentId={commentId} />
       ))}
       <button onClick={openModal}>new comment</button>
-      {qoute.report_ids.map((reportId) => (
+      {qoute.reportIds.map((reportId) => (
         <Report key={reportId} reportId={reportId} />
       ))}
 

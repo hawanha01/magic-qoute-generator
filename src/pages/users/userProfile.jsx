@@ -24,7 +24,7 @@ const UserProfile = () => {
       <p>Name: {user.name}</p>
       <p>Email: {user.email}</p>
       <p>
-        Image: <img src={user.profile_picture} alt="img" />
+        Image: <img src={user.profilePicture} alt="img" />
       </p>
       <button onClick={openModal}>Edit profile</button>
       <Link to="/dashboard">Back to dashboard</Link>

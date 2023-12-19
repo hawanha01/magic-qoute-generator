@@ -16,7 +16,7 @@ const UserReported = () => {
                 users.find(
                   (user) =>
                     user.id ===
-                    reports.find((report) => report.id === reportId).user_id
+                    reports.find((report) => report.id === reportId).userId
                 ).name
               }
               :

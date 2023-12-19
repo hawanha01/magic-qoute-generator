@@ -22,33 +22,33 @@ const userSlice = createSlice({
     },
     userActionFollowTag: (state, action) => {
       const user = state.data.find(
-        (user) => user.id === action.payload.current_user.id
+        (user) => user.id === action.payload.currentUser.id
       );
-      if (!user.tag_ids.includes(action.payload.tagId)) {
-        user.tag_ids = [...user.tag_ids, action.payload.tagId];
+      if (!user.tagIds.includes(action.payload.tagId)) {
+        user.tagIds = [...user.tagIds, action.payload.tagId];
       }
     },
     userActionUnfollowTag: (state, action) => {
       const user = state.data.find((user) => user.id === action.payload.userId);
-      const updatedTags = user.tag_ids.filter(
+      const updatedTags = user.tagIds.filter(
         (tagId) => tagId !== action.payload.tagId
       );
-      user.tag_ids = updatedTags;
+      user.tagIds = updatedTags;
     },
     userActionFollowUser: (state, action) => {
       const user = state.data.find(
-        (user) => user.id === action.payload.current_user.id
+        (user) => user.id === action.payload.currentUser.id
       );
-      if (!user.following_ids.includes(action.payload.userId)) {
-        user.following_ids = [...user.following_ids, action.payload.userId];
+      if (!user.followingIds.includes(action.payload.userId)) {
+        user.followingIds = [...user.followingIds, action.payload.userId];
       }
     },
     userActionUnfollowUser: (state, action) => {
       const user = state.data.find((user) => user.id === action.payload.userId);
-      const updateFollowings = user.following_ids.filter(
-        (following_id) => following_id !== action.payload.following_id
+      const updateFollowings = user.followingIds.filter(
+        (followingId) => followingId !== action.payload.followingId
       );
-      user.following_ids = updateFollowings;
+      user.followingIds = updateFollowings;
     },
     userActionEditUser: (state, action) => {
       const updatedusers = state.data.map((user) => {

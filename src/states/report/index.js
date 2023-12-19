@@ -17,8 +17,8 @@ const reportSlice = createSlice({
         {
           ...defaultSchema.defaultReport,
           ...action.payload.values,
-          qoute_id: action.payload.qouteId,
-          user_id: action.payload.currentUser.id,
+          qouteId: action.payload.qouteId,
+          userId: action.payload.currentUser.id,
           id: state.id + 1,
         },
       ];
@@ -32,7 +32,7 @@ const reportSlice = createSlice({
           ...defaultSchema.defaultReport,
           ...action.payload.values,
           repotedUser: action.payload.userId,
-          user_id: action.payload.currentUser.id,
+          userId: action.payload.currentUser.id,
           id: state.id + 1,
         },
       ];
@@ -41,7 +41,7 @@ const reportSlice = createSlice({
     },
     reportActionDeleteReportsOfQoute: (state, action) => {
       const updatedReports = state.data.filter(
-        (report) => !(report.qoute_id === action.payload)
+        (report) => !(report.qouteId === action.payload)
       );
       state.data = updatedReports;
     },

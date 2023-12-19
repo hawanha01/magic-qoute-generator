@@ -12,7 +12,7 @@ import {
 const CommentDislike = ({ commentId }) => {
   const [isDislike, setIsDislike] = useState();
   const comments = useSelector((state) => state.comments.data);
-  const current_user = useSelector((state) => state.current_user.data);
+  const currentUser = useSelector((state) => state.currentUser.data);
   const dislikes = useSelector((state) => state.dislikes.data);
   const likeId = useSelector((state) => state.dislikes.id);
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const CommentDislike = ({ commentId }) => {
 
   const dislike = dislikes.find(
     (dislike) =>
-      dislike.user_id === current_user.id && dislike.comment_id === commentId
+      dislike.userId === currentUser.id && dislike.commentId === commentId
   );
 
   useEffect(() => {
@@ -30,12 +30,12 @@ const CommentDislike = ({ commentId }) => {
   const handleDislike = () => {
     if (dislike) {
       dispatch(
-        dislikeActionRemoveDislikeFromComment({ commentId, current_user })
+        dislikeActionRemoveDislikeFromComment({ commentId, currentUser })
       );
       dispatch(commentActionRemoveDislikeFromComment({ commentId, dislike }));
       setIsDislike(!isDislike);
     } else {
-      dispatch(dislikeActionDislikeComment({ commentId, current_user }));
+      dispatch(dislikeActionDislikeComment({ commentId, currentUser }));
       dispatch(
         commentActionAddDislikeToComment({
           commentId,
@@ -49,7 +49,7 @@ const CommentDislike = ({ commentId }) => {
   return (
     <button onClick={() => handleDislike()}>
       {isDislike ? <span>disliked</span> : <span>dislike</span>}
-      {comment.dislike_ids.length}
+      {comment.dislikeIds.length}
     </button>
   );
 };

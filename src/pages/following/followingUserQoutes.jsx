@@ -10,13 +10,13 @@ const FollowingUserQoutes = () => {
   return (
     <div>
       <ul>
-        {user.following_ids.map((following_id) => {
-          const following_qoutes = qoutes.filter(
-            (qoute) => qoute.user_id === following_id
+        {user.followingIds.map((followingId) => {
+          const followingQoutes = qoutes.filter(
+            (qoute) => qoute.userId === followingId
           );
-          return following_qoutes.map((following_qoute) => (
-            <li key={`${following_id}-${following_qoute.id}`}>
-              <Qoute qouteId={following_qoute.id} />
+          return followingQoutes.map((followingQoute) => (
+            <li key={`${followingId}-${followingQoute.id}`}>
+              <Qoute qouteId={followingQoute.id} />
             </li>
           ));
         })}

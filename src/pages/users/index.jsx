@@ -9,11 +9,11 @@ import Report from "../../components/report";
 const AllUsers = () => {
   const allUsers = useSelector((state) => state.users.data);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const current_user = useSelector((state) => state.current_user.data);
-  const users = allUsers.filter((user) => user.id !== current_user.id);
+  const currentUser = useSelector((state) => state.currentUser.data);
+  const users = allUsers.filter((user) => user.id !== currentUser.id);
   const dispatch = useDispatch();
   const handleFollow = (userId) => {
-    dispatch(userActionFollowUser({ userId, current_user: current_user }));
+    dispatch(userActionFollowUser({ userId, currentUser: currentUser }));
   };
 
   const openModal = () => {

@@ -11,7 +11,7 @@ import EditCommentModal from "./editCommantModal";
 const Comment = ({ commentId }) => {
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
   const comments = useSelector((state) => state.comments.data);
-  const current_user = useSelector((state) => state.current_user.data);
+  const currentUser = useSelector((state) => state.currentUser.data);
   const dispatch = useDispatch();
   const comment = comments.find((comment) => comment.id === commentId);
   ReactModal.setAppElement("#root");
@@ -35,7 +35,7 @@ const Comment = ({ commentId }) => {
         <div>
           {comment.body}
           <span>
-            {comment.user_id === current_user.id ? (
+            {comment.userId === currentUser.id ? (
               <span>
                 <button onClick={openEditModal}>edit</button>
                 <button onClick={() => handleDelete()}>delete</button>

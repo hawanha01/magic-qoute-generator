@@ -12,14 +12,14 @@ import {
 const CommentLike = ({ commentId }) => {
   const [isLike, setIsLike] = useState();
   const comments = useSelector((state) => state.comments.data);
-  const current_user = useSelector((state) => state.current_user.data);
+  const currentUser = useSelector((state) => state.currentUser.data);
   const likes = useSelector((state) => state.likes.data);
   const likeId = useSelector((state) => state.likes.id);
   const dispatch = useDispatch();
   const comment = comments.find((comment) => comment.id === commentId);
 
   const like = likes.find(
-    (like) => like.user_id === current_user.id && like.comment_id === commentId
+    (like) => like.userId === currentUser.id && like.commentId === commentId
   );
 
   useEffect(() => {
@@ -28,11 +28,11 @@ const CommentLike = ({ commentId }) => {
 
   const handleLike = async () => {
     if (like) {
-      dispatch(likeActionRemoveLikeFromComment({ commentId, current_user }));
+      dispatch(likeActionRemoveLikeFromComment({ commentId, currentUser }));
       dispatch(commentActionRemoveLikeFromComment({ commentId, like }));
       setIsLike(!isLike);
     } else {
-      dispatch(likeActionLikeComment({ commentId, current_user }));
+      dispatch(likeActionLikeComment({ commentId, currentUser }));
       dispatch(
         commentActionAddLikeToComment({ commentId, likeId: likeId + 1 })
       );
@@ -43,7 +43,7 @@ const CommentLike = ({ commentId }) => {
   return (
     <button onClick={() => handleLike()}>
       {isLike ? <span>liked</span> : <span>likes</span>}
-      {comment.like_ids.length}
+      {comment.likeIds.length}
     </button>
   );
 };

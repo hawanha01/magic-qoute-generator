@@ -5,7 +5,7 @@ import { reportActionAddReportToUser } from "../../actions/reportActions";
 
 const UserReportModal = ({ closeModal, userId }) => {
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.current_user.data);
+  const currentUser = useSelector((state) => state.currentUser.data);
   const reportId = useSelector((state) => state.reports.id);
   const initialValues = {
     description: "",

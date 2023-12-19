@@ -8,12 +8,12 @@ import Search from "../../pages/search/index.jsx";
 import { Link } from "react-router-dom";
 
 const MyNavBar = () => {
-  const current_user = useSelector((state) => state.current_user.data);
+  const currentUser = useSelector((state) => state.currentUser.data);
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
         <Link to="/" className="navbar-brand">
-          {current_user.name}
+          {currentUser.name}
         </Link>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -29,25 +29,25 @@ const MyNavBar = () => {
               Tags
             </Link>
             <Link
-              to={`/user/${current_user.id}/followers`}
+              to={`/user/${currentUser.id}/followers`}
               className="nav-link"
             >
               Followers
             </Link>
-            <Link to={`/users/${current_user.id}/reports`} className="nav-link">
+            <Link to={`/users/${currentUser.id}/reports`} className="nav-link">
               Reports
             </Link>
             <NavDropdown title="Followings" id="navbarScrollingDropdown">
               <NavDropdown.Item
                 as={Link}
-                to={`/user/${current_user.id}/followings`}
+                to={`/user/${currentUser.id}/followings`}
                 className="dropdown-item"
               >
                 Users
               </NavDropdown.Item>
               <NavDropdown.Item
                 as={Link}
-                to={`/user/${current_user.id}/tags`}
+                to={`/user/${currentUser.id}/tags`}
                 className="dropdown-item"
               >
                 Tags
@@ -55,14 +55,14 @@ const MyNavBar = () => {
               <NavDropdown.Divider />
               <NavDropdown.Item
                 as={Link}
-                to={`/user/${current_user.id}/followings/qoutes`}
+                to={`/user/${currentUser.id}/followings/qoutes`}
                 className="dropdown-item"
               >
                 Quotes of Users
               </NavDropdown.Item>
               <NavDropdown.Item
                 as={Link}
-                to={`/user/${current_user.id}/tags/qoutes`}
+                to={`/user/${currentUser.id}/tags/qoutes`}
                 className="dropdown-item"
               >
                 Quotes of Tags

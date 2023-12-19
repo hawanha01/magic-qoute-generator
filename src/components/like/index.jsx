@@ -12,14 +12,14 @@ import {
 const Like = ({ qouteId }) => {
   const [isLike, setIsLike] = useState();
   const qoutes = useSelector((state) => state.qoutes.data);
-  const current_user = useSelector((state) => state.current_user.data);
+  const currentUser = useSelector((state) => state.currentUser.data);
   const likes = useSelector((state) => state.likes.data);
   const likeId = useSelector((state) => state.likes.id);
   const dispatch = useDispatch();
   const qoute = qoutes.find((qoute) => qoute.id === qouteId);
 
   const like = likes.find(
-    (like) => like.user_id === current_user.id && like.qoute_id === qouteId
+    (like) => like.userId === currentUser.id && like.qouteId === qouteId
   );
 
   useEffect(() => {
@@ -28,11 +28,11 @@ const Like = ({ qouteId }) => {
 
   const handleLike = async () => {
     if (like) {
-      dispatch(likeActionRemoveLikeFromQoute({ qouteId, current_user }));
+      dispatch(likeActionRemoveLikeFromQoute({ qouteId, currentUser }));
       dispatch(qouteActionRemoveLikeFromQoute({ qouteId, like }));
       setIsLike(!isLike);
     } else {
-      dispatch(likeActionLikeQoute({ qouteId, current_user }));
+      dispatch(likeActionLikeQoute({ qouteId, currentUser }));
       dispatch(qouteActionAddLikeToQoute({ qouteId, likeId: likeId + 1 }));
       setIsLike(!isLike);
     }
@@ -41,7 +41,7 @@ const Like = ({ qouteId }) => {
   return (
     <button onClick={() => handleLike()}>
       {isLike ? <span>liked</span> : <span>likes</span>}
-      {qoute.like_ids.length}
+      {qoute.likeIds.length}
     </button>
   );
 };

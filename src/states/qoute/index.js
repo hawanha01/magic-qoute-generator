@@ -19,7 +19,7 @@ const qouteSlice = createSlice({
           ...defaultSchema.defaultQoute,
           ...action.payload.values,
           id: state.id + 1,
-          user_id: action.payload.current_user.id,
+          userId: action.payload.currentUser.id,
           date: currentDate.toLocaleDateString(),
           time: currentTime.slice(11, 19),
         },
@@ -36,7 +36,7 @@ const qouteSlice = createSlice({
       const qoute = state.data.find(
         (qoute) => qoute.id === action.payload.qouteId
       );
-      qoute.like_ids = [...qoute.like_ids, action.payload.likeId];
+      qoute.likeIds = [...qoute.likeIds, action.payload.likeId];
     },
     qouteActionRemoveLikeFromQoute: (state, action) => {
       const { qouteId, like } = action.payload;
@@ -44,7 +44,7 @@ const qouteSlice = createSlice({
         if (qoute.id === qouteId) {
           return {
             ...qoute,
-            like_ids: qoute.like_ids.filter((id) => id !== like.id),
+            likeIds: qoute.likeIds.filter((id) => id !== like.id),
           };
         }
         return qoute;
@@ -55,7 +55,7 @@ const qouteSlice = createSlice({
       const qoute = state.data.find(
         (qoute) => qoute.id === action.payload.qouteId
       );
-      qoute.dislike_ids = [...qoute.dislike_ids, action.payload.dislikeId];
+      qoute.dislikeIds = [...qoute.dislikeIds, action.payload.dislikeId];
     },
     qouteActionRemoveDislikeFromQoute: (state, action) => {
       const { qouteId, dislike } = action.payload;
@@ -63,7 +63,7 @@ const qouteSlice = createSlice({
         if (qoute.id === qouteId) {
           return {
             ...qoute,
-            dislike_ids: qoute.dislike_ids.filter((id) => id !== dislike.id),
+            dislikeIds: qoute.dislikeIds.filter((id) => id !== dislike.id),
           };
         }
         return qoute;
@@ -74,13 +74,13 @@ const qouteSlice = createSlice({
       const qoute = state.data.find(
         (qoute) => qoute.id === action.payload.qouteId
       );
-      qoute.comment_ids = [...qoute.comment_ids, action.payload.commentId];
+      qoute.commentIds = [...qoute.commentIds, action.payload.commentId];
     },
     qouteActionAddReportToQoute: (state, action) => {
       const qoute = state.data.find(
         (qoute) => qoute.id === action.payload.qouteId
       );
-      qoute.report_ids = [...qoute.report_ids, action.payload.reportId];
+      qoute.reportIds = [...qoute.reportIds, action.payload.reportId];
     },
     qouteActionUpdateQoute: (state, action) => {
       const updatedQoutes = state.data.map((qoute) => {

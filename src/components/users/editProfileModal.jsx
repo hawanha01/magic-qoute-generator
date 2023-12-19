@@ -9,15 +9,15 @@ const EditProfileModal = ({ closeModal, currentUser }) => {
   const navigate = useNavigate();
 
   const initialValues = {
-    first_name: currentUser.first_name,
-    last_name: currentUser.last_name,
+    firstName: currentUser.firstName,
+    lastName: currentUser.lastName,
     name: currentUser.name,
-    user_name: currentUser.user_name,
-    profile_picture: "",
+    userName: currentUser.userName,
+    profilePicture: "",
     gender: currentUser.gender,
     email: currentUser.email,
     password: currentUser.password,
-    confirm_password: currentUser.password,
+    confirmPassword: currentUser.password,
   };
 
   const formik = useFormik({
@@ -35,36 +35,36 @@ const EditProfileModal = ({ closeModal, currentUser }) => {
     <div>
       <form onSubmit={formik.handleSubmit}>
         <div>
-          <label htmlFor="first_name">First Name</label>
+          <label htmlFor="firstName">First Name</label>
           <input
             type="text"
             autoComplete="off"
-            placeholder="first_name"
-            {...formik.getFieldProps("first_name")}
+            placeholder="firstName"
+            {...formik.getFieldProps("firstName")}
           />
-          {formik.errors.first_name && formik.touched.first_name ? (
-            <p className="form-error">{formik.errors.first_name}</p>
+          {formik.errors.firstName && formik.touched.firstName ? (
+            <p className="form-error">{formik.errors.firstName}</p>
           ) : null}
         </div>
 
         <div>
-          <label htmlFor="last_name">Last Name</label>
+          <label htmlFor="lastName">Last Name</label>
           <input
             type="text"
             autoComplete="off"
-            placeholder="last_name"
-            {...formik.getFieldProps("last_name")}
+            placeholder="lastName"
+            {...formik.getFieldProps("lastName")}
           />
-          {formik.errors.last_name && formik.touched.last_name ? (
-            <p className="form-error">{formik.errors.last_name}</p>
+          {formik.errors.lastName && formik.touched.lastName ? (
+            <p className="form-error">{formik.errors.lastName}</p>
           ) : null}
         </div>
 
         <div>
-          <label htmlFor="profile_picture">Profile Picture</label>
-          <input type="file" {...formik.getFieldProps("profile_picture")} />
-          {formik.errors.profile_picture && formik.touched.profile_picture ? (
-            <p className="form-error">{formik.errors.profile_picture}</p>
+          <label htmlFor="profilePicture">Profile Picture</label>
+          <input type="file" {...formik.getFieldProps("profilePicture")} />
+          {formik.errors.profilePicture && formik.touched.profilePicture ? (
+            <p className="form-error">{formik.errors.profilePicture}</p>
           ) : null}
         </div>
 
@@ -82,15 +82,15 @@ const EditProfileModal = ({ closeModal, currentUser }) => {
         </div>
 
         <div>
-          <label htmlFor="user_name">User Name</label>
+          <label htmlFor="userName">User Name</label>
           <input
             type="text"
             autoComplete="off"
             placeholder="username"
-            {...formik.getFieldProps("user_name")}
+            {...formik.getFieldProps("userName")}
           />
-          {formik.errors.user_name && formik.touched.user_name ? (
-            <p className="form-error">{formik.errors.user_name}</p>
+          {formik.errors.userName && formik.touched.userName ? (
+            <p className="form-error">{formik.errors.userName}</p>
           ) : null}
         </div>
 
@@ -138,15 +138,15 @@ const EditProfileModal = ({ closeModal, currentUser }) => {
         </div>
 
         <div>
-          <label htmlFor="confirm_password">Confirm Password</label>
+          <label htmlFor="confirmPassword">Confirm Password</label>
           <input
             type="password"
             autoComplete="off"
             placeholder="confirm password"
-            {...formik.getFieldProps("confirm_password")}
+            {...formik.getFieldProps("confirmPassword")}
           />
-          {formik.errors.confirm_password && formik.touched.confirm_password ? (
-            <p className="form-error">{formik.errors.confirm_password}</p>
+          {formik.errors.confirmPassword && formik.touched.confirmPassword ? (
+            <p className="form-error">{formik.errors.confirmPassword}</p>
           ) : null}
         </div>
 

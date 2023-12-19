@@ -1,16 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userActionFollowUser } from "../../actions/userActions";
 import { Link } from "react-router-dom";
+import ReactModal from "react-modal";
+import UserReportModal from "../report/userReportModal";
+import Report from "../report";
 
 const AllUsers = () => {
   const allUsers = useSelector((state) => state.users.data);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const current_user = useSelector((state) => state.current_user.data);
   const users = allUsers.filter((user) => user.id !== current_user.id);
   const dispatch = useDispatch();
   const handleFollow = (userId) => {
     dispatch(userActionFollowUser({ userId, current_user: current_user }));
   };
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  ReactModal.setAppElement("#root");
   return (
     <div>
       <ul>
@@ -18,8 +31,15 @@ const AllUsers = () => {
           <li key={user.id}>
             {user.name}
             <span>
+              {user.reportIds.map((reportId) => (
+                <Report key={reportId} reportId={reportId} />
+              ))}
               <button onClick={() => handleFollow(user.id)}>follow user</button>
+              <button onClick={openModal}>report</button>
             </span>
+            <ReactModal isOpen={modalIsOpen} onRequestClose={closeModal}>
+              <UserReportModal closeModal={closeModal} userId={user.id} />
+            </ReactModal>
           </li>
         ))}
       </ul>

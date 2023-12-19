@@ -20,18 +20,6 @@ const userSlice = createSlice({
       ];
       state.id = state.id + 1;
     },
-    likeQoute: (state, action) => {
-      console.log(state.data.users, action.payload);
-    },
-    dislikeQoute: (state, action) => {
-      console.log(state.data.users, action.payload);
-    },
-    likeComment: (state, action) => {
-      console.log(state.data.users, action.payload);
-    },
-    dislikeComment: (state, action) => {
-      console.log(state.data.users, action.payload);
-    },
     userActionFollowTag: (state, action) => {
       const user = state.data.find(
         (user) => user.id === action.payload.current_user.id
@@ -73,6 +61,10 @@ const userSlice = createSlice({
         return user;
       });
       state.data = updatedusers;
+    },
+    userActionAddReport: (state, action) => {
+      const user = state.data.find((user) => user.id === action.payload.userId);
+      user.reportIds = [...user.reportIds, action.payload.reportId];
     },
   },
 });

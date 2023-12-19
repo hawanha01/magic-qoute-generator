@@ -12,6 +12,7 @@ const FollowingUser = () => {
       userActionUnfollowUser({ userId: parseInt(userId.userId), following_id })
     );
   };
+
   return (
     <div>
       <ul>
@@ -26,6 +27,7 @@ const FollowingUser = () => {
           </li>
         ))}
       </ul>
+
       <Link to="/dashboard">back to Dashboard</Link>
     </div>
   );

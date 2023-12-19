@@ -60,6 +60,7 @@ const Dashboard = () => {
           <Link to="/search">
             search
           </Link>
+          <Link to={`/users/${current_user.id}/reports`}>user reports</Link>
           <ReactModal isOpen={tagModalIsOpen} onRequestClose={closeTagModal}>
             <TagModal closeModal={closeTagModal} />
           </ReactModal>

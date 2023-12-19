@@ -10,5 +10,6 @@ export const defaultUser = {
   password: null,
   following_ids: [],
   tag_ids: [],
+  reportIds: [],
 };
 export default userStore;

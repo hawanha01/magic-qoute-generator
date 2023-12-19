@@ -61,12 +61,6 @@ const commentSlice = createSlice({
       });
       state.data = updatedComments;
     },
-    commentActionAddReport: (state, action) => {
-      const comment = state.data.find(
-        (comment) => comment.id === action.payload.commentId
-      );
-      comment.report_ids = [...comment.report_ids, action.payload.reportId];
-    },
     commentActionDeleteCommentsOfQoute: (state, action) => {
       const updatedComments = state.data.filter(
         (comment) => !(comment.qoute_id === action.payload)

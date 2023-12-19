@@ -3,8 +3,8 @@ const reportStore = [];
 export const defaultReport = {
   id: null,
   user_id: null,
-  description:'',
+  description: "",
   qoute_id: null,
-  comment_id: null,
+  repotedUser: null,
 };
 export default reportStore;

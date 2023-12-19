@@ -11,6 +11,8 @@ import FollowingTagQoutes from "../components/following/followingTagQoutes";
 import UserProfile from "../components/users/userProfile";
 import UserFollowers from "../components/following/userFollowers";
 import Search from "../pages/search";
+import UserReported from "../components/report/userReported";
+import PrivateRoute from "./privateRoute";
 
 const router = createBrowserRouter([
   {
@@ -23,43 +25,47 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: <PrivateRoute element={<Dashboard />} />,
   },
   {
     path: "/users",
-    element: <AllUsers />,
+    element: <PrivateRoute element={<AllUsers />} />,
   },
   {
     path: "/user/:userId/followings",
-    element: <FollowingUser />,
+    element: <PrivateRoute element={<FollowingUser />} />,
   },
   {
     path: "/user/:userId/followers",
-    element: <UserFollowers />,
+    element: <PrivateRoute element={<UserFollowers />} />,
   },
   {
     path: "/tags",
-    element: <AllTags />,
+    element: <PrivateRoute element={<AllTags />} />,
   },
   {
     path: "/user/:userId/tags",
-    element: <FollowingTag />,
+    element: <PrivateRoute element={<FollowingTag />} />,
   },
   {
     path: "/user/:userId/followings/qoutes",
-    element: <FollowingUserQoutes />,
+    element: <PrivateRoute element={<FollowingUserQoutes />} />,
   },
   {
     path: "/user/:userId/tags/qoutes",
-    element: <FollowingTagQoutes />,
+    element: <PrivateRoute element={<FollowingTagQoutes />} />,
   },
   {
     path: "/users/:userId",
-    element: <UserProfile />,
+    element: <PrivateRoute element={<UserProfile />} />,
   },
   {
     path: "/search",
-    element: <Search />,
+    element: <PrivateRoute element={<Search />} />,
+  },
+  {
+    path: "/users/:userId/reports",
+    element: <PrivateRoute element={<UserReported />} />,
   },
 ]);
 

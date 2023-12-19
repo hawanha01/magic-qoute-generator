@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { reportActionAddReport } from "../../actions/reportActions";
 import { qouteActionAddReportToQoute } from "../../actions/qouteActions";
+import { reportActionAddReportToQoute } from "../../actions/reportActions";
 
 const ReportModal = ({ closeModal, qouteId }) => {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ const ReportModal = ({ closeModal, qouteId }) => {
   const formik = useFormik({
     initialValues,
     onSubmit: (values, { resetForm }) => {
-      dispatch(reportActionAddReport({ values, currentUser }));
+      dispatch(reportActionAddReportToQoute({ values, currentUser, qouteId }));
       dispatch(
         qouteActionAddReportToQoute({ reportId: reportId + 1, qouteId })
       );

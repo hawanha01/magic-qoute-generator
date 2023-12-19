@@ -1,9 +1,9 @@
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { reportActionAddReport } from "../../actions/reportActions";
-import { commentActionAddReport } from "../../actions/commentActions";
+import { userActionAddReport } from "../../actions/userActions";
+import { reportActionAddReportToUser } from "../../actions/reportActions";
 
-const CommentReportModal = ({closeModal,commentId}) => {
+const UserReportModal = ({ closeModal, userId }) => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.current_user.data);
   const reportId = useSelector((state) => state.reports.id);
@@ -13,10 +13,8 @@ const CommentReportModal = ({closeModal,commentId}) => {
   const formik = useFormik({
     initialValues,
     onSubmit: (values, { resetForm }) => {
-      dispatch(reportActionAddReport({ values, currentUser }));
-      dispatch(
-        commentActionAddReport({ reportId: reportId + 1, commentId })
-      );
+      dispatch(reportActionAddReportToUser({ values, currentUser, userId }));
+      dispatch(userActionAddReport({ reportId: reportId + 1, userId }));
       resetForm();
       closeModal();
     },
@@ -40,6 +38,6 @@ const CommentReportModal = ({closeModal,commentId}) => {
       </form>
     </div>
   );
-}
+};
 
-export default CommentReportModal
+export default UserReportModal;

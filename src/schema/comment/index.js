@@ -7,7 +7,6 @@ export const defaultComment = {
   body: null,
   like_ids: [],
   dislike_ids: [],
-  report_ids: [],
 };
 
 export default commentStore;

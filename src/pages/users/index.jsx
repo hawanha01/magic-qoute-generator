@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { userActionFollowUser } from "../../actions/userActions";
 import { Link } from "react-router-dom";
 import ReactModal from "react-modal";
-import UserReportModal from "../report/userReportModal";
-import Report from "../report";
+import UserReportModal from "../../components/report/userReportModal";
+import Report from "../../components/report";
 
 const AllUsers = () => {
   const allUsers = useSelector((state) => state.users.data);
@@ -32,7 +32,7 @@ const AllUsers = () => {
             {user.name}
             <span>
               {user.reportIds.map((reportId) => (
-                <Report key={reportId} reportId={reportId} />
+                <Report key={`${reportId}-${user.id}`} reportId={reportId} />
               ))}
               <button onClick={() => handleFollow(user.id)}>follow user</button>
               <button onClick={openModal}>report</button>

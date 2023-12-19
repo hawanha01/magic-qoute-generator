@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { CurrentUserSetCurrentUser } from "../../actions/currentUserActions";
-
+import "./registration.css";
 const Signin = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users.data);
@@ -34,7 +34,7 @@ const Signin = () => {
   });
 
   return (
-    <div>
+    <div className="form-wrapper" id="signin-wrapper">
       <form onSubmit={formik.handleSubmit}>
         <div>
           <label htmlFor="email">Email</label>
@@ -56,10 +56,8 @@ const Signin = () => {
           />
         </div>
         <button type="submit">Submit</button>
-      </form>
-      <div>
         <Link to="/registration">Not have account?</Link>
-      </div>
+      </form>
     </div>
   );
 };

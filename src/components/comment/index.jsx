@@ -7,7 +7,6 @@ import { likeActionRemoveLikesOfComment } from "../../actions/likeAction";
 import { dislikeActionRemoveDislikesOfComment } from "../../actions/dislikeAction";
 import { commentActionDeleteComment } from "../../actions/commentActions";
 import EditCommentModal from "./editCommantModal";
-import Report from "../report";
 
 const Comment = ({ commentId }) => {
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);

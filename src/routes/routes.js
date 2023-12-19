@@ -2,17 +2,17 @@ import Dashboard from "../pages/dashboard";
 import { createBrowserRouter } from "react-router-dom";
 import Signin from "../pages/registration/signin";
 import Signup from "../pages/registration/signup";
-import AllUsers from "../components/users";
-import AllTags from "../components/tags";
-import FollowingUser from "../components/following/followingUser";
-import FollowingTag from "../components/following/followingTag";
-import FollowingUserQoutes from "../components/following/followingUserQoutes";
-import FollowingTagQoutes from "../components/following/followingTagQoutes";
-import UserProfile from "../components/users/userProfile";
-import UserFollowers from "../components/following/userFollowers";
-import Search from "../pages/search";
-import UserReported from "../components/report/userReported";
+import AllUsers from "../pages/users/index.jsx";
+import AllTags from "../pages/tags/index.jsx";
+import UserProfile from "../pages/users/userProfile.jsx";
+import Search from "../pages/search/index.jsx";
+import UserReported from "../pages/report/userReported.jsx";
 import PrivateRoute from "./privateRoute";
+import FollowingUser from "../pages/following/followingUser.jsx";
+import FollowingTag from "../pages/following/followingTag.jsx";
+import FollowingTagQoutes from "../pages/following/followingTagQoutes.jsx";
+import FollowingUserQoutes from "../pages/following/followingUserQoutes.jsx";
+import Followers from "../pages/followers/index.jsx";
 
 const router = createBrowserRouter([
   {
@@ -37,7 +37,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/user/:userId/followers",
-    element: <PrivateRoute element={<UserFollowers />} />,
+    element: <PrivateRoute element={<Followers />} />,
   },
   {
     path: "/tags",

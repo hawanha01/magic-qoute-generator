@@ -60,6 +60,7 @@ const Qoute = ({ qouteId }) => {
 
   return (
     <div>
+      <div>{current_user.name}</div>
       <div>
         Body: {qoute.body},tags:{" "}
         {associated_tags.map((tag) => `${tag.title}---`)}

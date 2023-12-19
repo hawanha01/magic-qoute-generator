@@ -33,9 +33,7 @@ const Like = ({ qouteId }) => {
       setIsLike(!isLike);
     } else {
       dispatch(likeActionLikeQoute({ qouteId, current_user }));
-      dispatch(
-        qouteActionAddLikeToQoute({ qouteId, likeId: likeId + 1 })
-      );
+      dispatch(qouteActionAddLikeToQoute({ qouteId, likeId: likeId + 1 }));
       setIsLike(!isLike);
     }
   };

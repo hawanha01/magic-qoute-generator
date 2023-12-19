@@ -2,7 +2,7 @@ import { useState } from "react";
 import ReactModal from "react-modal";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import EditProfileModal from "./editProfileModal";
+import EditProfileModal from "../../components/users/editProfileModal";
 
 const UserProfile = () => {
   const userId = useParams();

@@ -81,7 +81,7 @@ const Search = () => {
             <p>
               Author:{" "}
               {qoute.user_id
-                ? `${users.find(user=>user.id === qoute.user_id).name}`
+                ? `${users.find((user) => user.id === qoute.user_id).name}`
                 : "Unknown"}
             </p>
             <p>Date: {qoute.date}</p>
@@ -91,7 +91,6 @@ const Search = () => {
           </li>
         ))}
       </ul>
-      <Link to="/dashboard">back to dashboard</Link>
     </div>
   );
 };

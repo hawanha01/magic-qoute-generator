@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import Qoute from "../qoute";
+import Qoute from "../../components/qoute";
 
 const FollowingTagQoutes = () => {
   const userId = useParams();

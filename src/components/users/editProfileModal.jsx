@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 const EditProfileModal = ({ closeModal, currentUser }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   const initialValues = {
     first_name: currentUser.first_name,
     last_name: currentUser.last_name,

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 
-const UserFollowers = () => {
+const Followers = () => {
   const userId = useParams();
   const users = useSelector((state) => state.users.data);
   const currentUser = users.find((user) => user.id === parseInt(userId.userId));
@@ -19,8 +19,6 @@ const UserFollowers = () => {
   return (
     <div>
       <ul>
-        {/* {users.map(user=>user.following_ids.find(following_id => following_id === currentUser.id))}
-         */}
         {followerUsers.map((follower) => (
           <li key={follower.id}>{follower.name}</li>
         ))}
@@ -30,4 +28,4 @@ const UserFollowers = () => {
   );
 };
 
-export default UserFollowers;
+export default Followers;

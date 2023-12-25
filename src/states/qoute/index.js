@@ -12,7 +12,11 @@ const qouteSlice = createSlice({
   reducers: {
     qouteActionAddQoute: (state, action) => {
       const currentDate = new Date();
-      const currentTime = currentDate.toISOString();
+
+      const options = { timeZone: "Asia/Karachi" };
+      const formattedDate = currentDate.toLocaleDateString("en-US", options);
+      const formattedTime = currentDate.toLocaleTimeString("en-US", options);
+
       state.data = [
         ...state.data,
         {
@@ -20,8 +24,8 @@ const qouteSlice = createSlice({
           ...action.payload.values,
           id: state.id + 1,
           userId: action.payload.currentUser.id,
-          date: currentDate.toLocaleDateString(),
-          time: currentTime.slice(11, 19),
+          date: formattedDate,
+          time: formattedTime.slice(0, 8),
         },
       ];
       state.id = state.id + 1;

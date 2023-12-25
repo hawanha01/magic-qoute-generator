@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { CurrentUserSetCurrentUser } from "../../actions/currentUserActions";
-import "./registration.css";
+import "./style.css";
 const Signin = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users.data);
@@ -34,8 +34,8 @@ const Signin = () => {
   });
 
   return (
-    <div className="form-wrapper" id="signin-wrapper">
-      <form onSubmit={formik.handleSubmit}>
+    <div className="form-wrapper">
+      <form onSubmit={formik.handleSubmit} className="signin-form">
         <div>
           <label htmlFor="email">Email</label>
           <input

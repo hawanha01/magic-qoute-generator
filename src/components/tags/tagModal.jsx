@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import tagValidation from "../../validations/tagValication";
 import { useDispatch } from "react-redux";
 import { TagActionCreateTag } from "../../actions/tagActions";
+import "./style.css";
 
 const TagModal = ({ closeModal }) => {
   const dispatch = useDispatch();
@@ -19,21 +20,29 @@ const TagModal = ({ closeModal }) => {
       closeModal();
     },
   });
+
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <div>
-        <label htmlFor="title">Title</label>
-        <textarea
-          type="text"
-          autoComplete="off"
-          {...formik.getFieldProps("title")}
-        />
-        {formik.errors.title && formik.touched.title ? (
-          <p className="form-error">{formik.errors.title}</p>
-        ) : null}
-      </div>
-      <button type="submit">Add Tag</button>
-    </form>
+    <div className="tag-modal-container">
+      <form onSubmit={formik.handleSubmit} className="tag-modal-form">
+        <div>
+          <label htmlFor="title">Title</label>
+          <input
+            type="text"
+            autoComplete="off"
+            placeholder="Add a tag here"
+            {...formik.getFieldProps("title")}
+            className="tag-modal-input"
+          />
+          {formik.errors.title && formik.touched.title ? (
+            <p className="form-error">{formik.errors.title}</p>
+          ) : null}
+        </div>
+        <button type="submit" className="tag-modal-button">
+          Add Tag
+        </button>
+      </form>
+    </div>
   );
 };
+
 export default TagModal;

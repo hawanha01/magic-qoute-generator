@@ -1,0 +1,191 @@
+.qoute-container {
+  width: 50%;
+  text-align: left;
+  padding: 1rem;
+  margin: 1rem auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.qoute-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.qoute-body {
+  margin: 1rem auto;
+}
+
+.qoute-tag {
+  margin-bottom: 1rem;
+}
+
+.qoute-actions {
+  display: flex;
+  align-items: center;
+}
+
+.options-dropdown {
+  background-color: #fff;
+  border: none;
+}
+
+.options-dropdown button {
+  display: block;
+  padding: 0.5rem;
+  text-align: left;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.options-dropdown button:hover {
+  background-color: #f0f0f0;
+}
+
+.qoute-tabs {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.qoute-tabs button {
+  padding: 0.5rem;
+  margin-right: 1rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.qoute-tabs button.active-tab {
+  font-weight: bold;
+}
+
+.qoute-modal-container,
+.edit-qoute-modal-container {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+}
+
+.qoute-form,
+.edit-qoute-modal-form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 25%;
+  background: transparent;
+}
+
+.qoute-label,
+.edit-qoute-modal-form label {
+  font-weight: bold;
+  margin: 1rem;
+}
+
+.qoute-input,
+.edit-qoute-modal-form textarea {
+  width: 100%;
+  border: none;
+  border: 2px solid #5d6266;
+  border-radius: 5px;
+  padding: 0.5rem;
+  outline: none;
+  font-size: 14px;
+  resize: vertical;
+  overflow-y: auto;
+  max-height: 10em;
+}
+
+.comment-report-div {
+  max-width: 100%;
+}
+
+.tag-checkbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.tag-label {
+  margin-left: 0.5rem;
+}
+
+.form-error {
+  color: #ff0000;
+  margin-top: 0.25rem;
+}
+
+.add-qoute-button,
+.edit-qoute-modal-form button {
+  padding: 0.5rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-qoute-button:hover,
+.edit-qoute-modal-form button:hover {
+  background-color: #0056b3;
+}
+
+.qoute-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.user-info-container {
+  display: flex;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-profile img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-weight: bold;
+}
+
+.qoute-datetime {
+  font-size: 12px;
+  color: #888;
+}
+
+.qoute-actions {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .qoute-container {
+    width: 70%;
+  }
+
+  .user-profile img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+  }
+}

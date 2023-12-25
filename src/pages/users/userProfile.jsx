@@ -1,8 +1,10 @@
 import { useState } from "react";
 import ReactModal from "react-modal";
 import { useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import EditProfileModal from "../../components/users/editProfileModal";
+import "./styles.css";
+import profile_picture from '../../assets/profile_picture/profile_picture.jpg'
 
 const UserProfile = () => {
   const userId = useParams();
@@ -20,14 +22,15 @@ const UserProfile = () => {
   };
 
   return (
-    <div>
-      <p>Name: {user.name}</p>
-      <p>Email: {user.email}</p>
-      <p>
-        Image: <img src={user.profilePicture} alt="img" />
-      </p>
-      <button onClick={openModal}>Edit profile</button>
-      <Link to="/dashboard">Back to dashboard</Link>
+    <div className="user-profile-container">
+      <div className="user-details">
+        <img src={profile_picture} alt="User" className="user-profile-image" />
+        <p className="user-name">{user.name}</p>
+        <p className="user-email">Email: {user.email}</p>
+      </div>
+      <div className="user-actions">
+        <button onClick={openModal}>Edit Profile</button>
+      </div>
       <ReactModal isOpen={modalIsOpen} onRequestClose={closeModal}>
         <EditProfileModal closeModal={closeModal} currentUser={user} />
       </ReactModal>

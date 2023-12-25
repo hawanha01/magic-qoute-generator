@@ -1,0 +1,144 @@
+.report-form-container>form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem auto;
+}
+
+.report-input {
+  flex: 1;
+  width: 100%;
+  border: none;
+  border: 2px solid #5d6266;
+  border-radius: 5px;
+  padding: 0.5rem;
+  margin-right: 1rem;
+  outline: none;
+  font-size: 14px;
+  resize: vertical;
+  overflow-y: auto;
+  max-height: 10em;
+}
+
+.add-report-button {
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: 0.25rem;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.add-comment-button:hover {
+  background-color: #0056b3;
+}
+
+.report-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border: none;
+  text-align: left;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem auto;
+}
+
+.report-profile-image img {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.report-user-info {
+  flex: 1;
+  background-color: #F1F1F1;
+}
+
+.report-text {
+  margin-top: 0.5rem;
+}
+
+.report-user {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.report-description {
+  margin-top: 5px;
+}
+
+
+.report-user-details {
+  display: flex;
+  align-items: flex-start;
+}
+
+.profile-image {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.report-user-info {
+  flex: 1;
+  background-color: #F1F1F1;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.report-text {
+  margin-top: 0.5rem;
+}
+
+.user-report-modal-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-report-modal-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-report-modal-form div {
+  margin-bottom: 20px;
+}
+
+.user-report-modal-form label {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.user-report-modal-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.user-report-modal-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.user-report-modal-form button:hover {
+  background-color: #0056b3;
+}
+
+.form-error {
+  color: red;
+}

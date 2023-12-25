@@ -1,0 +1,39 @@
+.all-tags-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.tag-list {
+  list-style-type: none;
+  padding: 0;
+  width: 60%;
+}
+
+.tag-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 0.7rem;
+  margin-bottom: 0.7rem;
+}
+
+.tag-title {
+  font-weight: bold;
+}
+
+.follow-button {
+  background-color: #007bff;
+  border-radius: 5px;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+}
+
+.follow-button:hover {
+  background-color: #0056b3;
+}

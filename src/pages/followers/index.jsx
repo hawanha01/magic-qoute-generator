@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import "./Followers.css";
 
 const Followers = () => {
   const userId = useParams();
@@ -17,13 +18,21 @@ const Followers = () => {
     });
 
   return (
-    <div>
-      <ul>
-        {followerUsers.map((follower) => (
-          <li key={follower.id}>{follower.name}</li>
-        ))}
-      </ul>
-      <Link to="/dashboard">Back to dashboard</Link>
+    <div className="followers-container">
+      <table className="followers-table">
+        <thead>
+          <tr>
+            <th>Followers</th>
+          </tr>
+        </thead>
+        <tbody>
+          {followerUsers.map((follower) => (
+            <tr key={follower.id}>
+              <td>{follower.email}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

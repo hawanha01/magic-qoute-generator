@@ -1,0 +1,104 @@
+/* Signup.css */
+
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.edit-profile-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.edit-profile-modal>.signup-form {
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin-top: 3rem;
+}
+
+.signup-form,
+.signin-form {
+  width: 35%;
+  max-width: 50%;
+  padding: 1rem;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin-top: 3rem;
+}
+
+.signup-form div,
+.signin-form div {
+  margin-bottom: 1rem;
+}
+
+.signup-form label,
+.signin-form label {
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.signup-form input,
+.signup-form select,
+.signin-form input {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.signup-form button,
+.signin-form button {
+  width: 100%;
+  padding: 0.6rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.signup-form button:hover,
+.signin-form button:hover {
+  background-color: #0056b3;
+}
+
+.signup-form a,
+.signin-form a {
+  display: block;
+  margin-top: 15px;
+  text-align: center;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.signup-form a:hover,
+.signin-form a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+
+  .signup-form,
+  .signin-form {
+    width: 90%;
+  }
+
+  .edit-profile-modal {
+    margin-top: 4rem;
+  }
+
+  .edit-profile-modal>.signup-form {
+    margin-top: 2rem;
+  }
+}

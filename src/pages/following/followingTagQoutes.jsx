@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Qoute from "../../components/qoute";
 
 const FollowingTagQoutes = () => {
@@ -32,7 +32,6 @@ const FollowingTagQoutes = () => {
           ));
         })}
       </ul>
-      <Link to="/dashboard">Back to dashboard</Link>
     </div>
   );
 };

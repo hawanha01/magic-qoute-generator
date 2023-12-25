@@ -4,12 +4,14 @@ import commentValidation from "../../validations/commentValidation";
 import { useDispatch, useSelector } from "react-redux";
 import { commentActionAddComment } from "../../actions/commentActions";
 import { qouteActionAddCommentToQoute } from "../../actions/qouteActions";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./Comment.css";
 
-const CommentModal = ({ closeModal, qouteId }) => {
+const CommentForm = ({ qouteId }) => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUser.data);
   const commentId = useSelector((state) => state.comments.id);
-
   const initialValues = {
     body: "",
   };
@@ -26,29 +28,32 @@ const CommentModal = ({ closeModal, qouteId }) => {
         })
       );
       resetForm();
-      closeModal();
     },
   });
 
   return (
-    <div>
+    <div className="comment-form-container">
       <form onSubmit={formik.handleSubmit}>
-        <div>
-          <label htmlFor="body">Content</label>
-          <textarea
-            type="text"
-            autoComplete="off"
-            {...formik.getFieldProps("body")}
-          />
-          {formik.errors.body && formik.touched.body ? (
-            <p className="form-error">{formik.errors.body}</p>
-          ) : null}
-        </div>
-
-        <button type="submit">add comment</button>
+        <textarea
+          className="comment-input"
+          type="text"
+          autoComplete="off"
+          placeholder="Add a comment..."
+          {...formik.getFieldProps("body")}
+          rows="1"
+          onFocus={(e) => {
+            e.target.rows = 5;
+          }}
+          onBlur={(e) => {
+            e.target.rows = 1;
+          }}
+        />
+        <button type="submit" className="add-comment-button">
+          <FontAwesomeIcon icon={faPaperPlane} />
+        </button>
       </form>
     </div>
   );
 };
 
-export default CommentModal;
+export default CommentForm;

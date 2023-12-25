@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
   likeActionLikeQoute,
@@ -24,7 +27,7 @@ const Like = ({ qouteId }) => {
 
   useEffect(() => {
     like ? setIsLike(true) : setIsLike(false);
-  }, [like]);
+  }, []);
 
   const handleLike = async () => {
     if (like) {
@@ -39,10 +42,16 @@ const Like = ({ qouteId }) => {
   };
 
   return (
-    <button onClick={() => handleLike()}>
-      {isLike ? <span>liked</span> : <span>likes</span>}
+    <span onClick={() => handleLike()}>
+      <span className="icon">
+        {isLike ? (
+          <FontAwesomeIcon icon={faHeart} style={{ color: "red" }} />
+        ) : (
+          <FontAwesomeIcon icon={faHeart} />
+        )}
+      </span>
       {qoute.likeIds.length}
-    </button>
+    </span>
   );
 };
 

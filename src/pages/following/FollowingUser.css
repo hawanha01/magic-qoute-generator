@@ -1,0 +1,39 @@
+.following-user-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.user-list {
+  list-style-type: none;
+  padding: 0;
+  width: 60%;
+}
+
+.user-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 0.7rem;
+  margin-bottom: 0.7rem;
+}
+
+.user-name {
+  font-weight: bold;
+}
+
+.unfollow-button {
+  background-color: #dc3545;
+  border-radius: 5px;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+}
+
+.unfollow-button:hover {
+  background-color: #bd2130;
+}

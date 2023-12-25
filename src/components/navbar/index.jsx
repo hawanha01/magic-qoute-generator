@@ -1,24 +1,26 @@
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { useSelector } from "react-redux";
-import Search from "../../pages/search/index.jsx";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import profile_picture from "../../assets/profile_picture/profile_picture.jpg";
+import { CurrentUserResetCurrentUser } from "../../actions/currentUserActions.js";
 
 const MyNavBar = () => {
   const currentUser = useSelector((state) => state.currentUser.data);
+  const dispatch = useDispatch();
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
-        <Link to="/" className="navbar-brand">
-          {currentUser.name}
+        <Link to="/dashboard" className="navbar-brand">
+          Home
         </Link>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
-            className="me-auto my-2 my-lg-0"
+            className="ml-auto my-2 my-lg-0"
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
@@ -28,10 +30,7 @@ const MyNavBar = () => {
             <Link to="/tags" className="nav-link">
               Tags
             </Link>
-            <Link
-              to={`/user/${currentUser.id}/followers`}
-              className="nav-link"
-            >
+            <Link to={`/user/${currentUser.id}/followers`} className="nav-link">
               Followers
             </Link>
             <Link to={`/users/${currentUser.id}/reports`} className="nav-link">
@@ -69,7 +68,26 @@ const MyNavBar = () => {
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <Form className="d-flex">{/* <Search /> */}</Form>
+          <Nav className="ml-auto my-2 my-lg-0">
+            <Nav.Link as={Link} to={`/users/${currentUser.id}`}>
+              <img
+                src={profile_picture}
+                style={{
+                  width: "2.5rem",
+                  height: "2.5rem",
+                  borderRadius: "50%",
+                }}
+                alt="profile"
+              />
+            </Nav.Link>
+            <Nav.Link
+              as={Link}
+              to="/"
+              onClick={() => dispatch(CurrentUserResetCurrentUser())}
+            >
+              Sign out
+            </Nav.Link>
+          </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>

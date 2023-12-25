@@ -1,0 +1,44 @@
+.all-users-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.user-list {
+  list-style-type: none;
+  padding: 0;
+  width: 60%;
+}
+
+.user-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 0.7rem;
+  margin-bottom: 0.7rem;
+}
+
+.user-name {
+  font-weight: bold;
+}
+
+.user-buttons {
+  display: flex;
+  gap: 0.7rem;
+}
+
+.follow-button,
+.report-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+}
+
+.follow-button:hover,
+.report-button:hover {
+  background-color: #0056b3;
+}

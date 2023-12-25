@@ -3,6 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import qouteValidation from "../../validations/qouteValidation";
 import { qouteActionUpdateQoute } from "../../actions/qouteActions";
+import "./styles.css";
 
 const EditQouteModal = ({ closeModal, qouteId }) => {
   const qoutes = useSelector((state) => state.qoutes.data);
@@ -26,10 +27,9 @@ const EditQouteModal = ({ closeModal, qouteId }) => {
   });
 
   return (
-    <div>
-      <form onSubmit={formik.handleSubmit}>
+    <div className="edit-qoute-modal-container">
+      <form onSubmit={formik.handleSubmit} className="edit-qoute-modal-form">
         <div>
-          <label htmlFor="body">Content</label>
           <textarea
             type="text"
             autoComplete="off"
@@ -69,9 +69,10 @@ const EditQouteModal = ({ closeModal, qouteId }) => {
           ) : null}
         </div>
 
-        <button type="submit">update qoute</button>
+        <button type="submit">Update Qoute</button>
       </form>
     </div>
   );
 };
+
 export default EditQouteModal;

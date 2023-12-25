@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
 import {
   qouteActionAddDislikeToQoute,
@@ -45,10 +47,14 @@ const Dislike = ({ qouteId }) => {
   };
 
   return (
-    <button onClick={() => handleDislike()}>
-      {isDislike ? <span>disliked</span> : <span>dislike</span>}
+    <span onClick={() => handleDislike()}>
+      {isDislike ? (
+        <FontAwesomeIcon icon={faThumbsDown} style={{ color: "blue" }} />
+      ) : (
+        <FontAwesomeIcon icon={faThumbsDown} />
+      )}
       {qoute.dislikeIds.length}
-    </button>
+    </span>
   );
 };
 

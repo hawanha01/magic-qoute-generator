@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { userActionAddReport } from "../../actions/userActions";
 import { reportActionAddReportToUser } from "../../actions/reportActions";
+import "./Report.css";
 
 const UserReportModal = ({ closeModal, userId }) => {
   const dispatch = useDispatch();
@@ -10,6 +11,7 @@ const UserReportModal = ({ closeModal, userId }) => {
   const initialValues = {
     description: "",
   };
+
   const formik = useFormik({
     initialValues,
     onSubmit: (values, { resetForm }) => {
@@ -19,9 +21,10 @@ const UserReportModal = ({ closeModal, userId }) => {
       closeModal();
     },
   });
+
   return (
-    <div>
-      <form onSubmit={formik.handleSubmit}>
+    <div className="user-report-modal-container">
+      <form onSubmit={formik.handleSubmit} className="user-report-modal-form">
         <div>
           <label htmlFor="description">Content</label>
           <textarea
@@ -34,7 +37,7 @@ const UserReportModal = ({ closeModal, userId }) => {
           ) : null}
         </div>
 
-        <button type="submit">add report</button>
+        <button type="submit">Add Report</button>
       </form>
     </div>
   );

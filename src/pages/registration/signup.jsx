@@ -1,10 +1,11 @@
 import { useFormik } from "formik";
 import React from "react";
 import userValidation from "../../validations/userValidation";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { userActionAddUser } from "../../actions/userActions";
-import "./registration.css";
+import "./style.css";
+
 const Signup = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -32,8 +33,8 @@ const Signup = () => {
   });
 
   return (
-    <div className="form-wrapper" id="signup-wrapper">
-      <form onSubmit={formik.handleSubmit}>
+    <div className="form-wrapper">
+      <form onSubmit={formik.handleSubmit} className="signup-form">
         <div>
           <label htmlFor="firstName">First Name</label>
           <input
@@ -151,7 +152,6 @@ const Signup = () => {
         </div>
 
         <button type="submit">Submit</button>
-        <Link to="/">Back to login</Link>
       </form>
     </div>
   );

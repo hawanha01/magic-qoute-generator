@@ -1,0 +1,39 @@
+.following-tag-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.tag-list {
+  list-style-type: none;
+  padding: 0;
+  width: 60%;
+}
+
+.tag-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+.tag-title {
+  font-weight: bold;
+}
+
+.unfollow-button {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.unfollow-button:hover {
+  background-color: #bd2130;
+}

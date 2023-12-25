@@ -3,6 +3,8 @@ import React from "react";
 import qouteValidation from "../../validations/qouteValidation";
 import { useDispatch, useSelector } from "react-redux";
 import { qouteActionAddQoute } from "../../actions/qouteActions";
+import "./styles.css";
+
 const QouteModal = ({ closeModal }) => {
   const tags = useSelector((state) => state.tags.data);
   const currentUser = useSelector((state) => state.currentUser.data);
@@ -24,27 +26,35 @@ const QouteModal = ({ closeModal }) => {
   });
 
   return (
-    <div>
-      <form onSubmit={formik.handleSubmit}>
+    <div className="qoute-modal-container">
+      <form onSubmit={formik.handleSubmit} className="qoute-form">
         <div>
-          <label htmlFor="body">Content</label>
           <textarea
+            className="qoute-input"
+            name="body"
             type="text"
             autoComplete="off"
+            placeholder="Write a quote"
             {...formik.getFieldProps("body")}
+            rows="1"
+            onFocus={(e) => {
+              e.target.rows = 5;
+            }}
           />
-          {formik.errors.body && formik.touched.body ? (
-            <p className="form-error">{formik.errors.body}</p>
-          ) : null}
         </div>
 
+        {formik.errors.body && formik.touched.body ? (
+          <p className="form-error">{formik.errors.body}</p>
+        ) : null}
         <div>
-          <label htmlFor="tagIds">Tags</label>
+          <label htmlFor="tagIds" className="qoute-label">
+            <b>Tag list</b>
+          </label>
           {tags.map((tag) => (
-            <div key={tag.id}>
+            <div key={tag.id} className="tag-checkbox">
               <input
                 type="checkbox"
-                id={tag.id}
+                id={`tag-${tag.id}`}
                 name="tagIds"
                 value={tag.id}
                 checked={formik.values.tagIds.includes(tag.id)}
@@ -59,7 +69,9 @@ const QouteModal = ({ closeModal }) => {
                 }}
                 onBlur={formik.handleBlur}
               />
-              <label htmlFor={tag.id}>{tag.title}</label>
+              <label htmlFor={`tag-${tag.id}`} className="tag-label">
+                {tag.title}
+              </label>
             </div>
           ))}
           {formik.errors.tagIds && formik.touched.tagIds ? (
@@ -67,7 +79,9 @@ const QouteModal = ({ closeModal }) => {
           ) : null}
         </div>
 
-        <button type="submit">add qoute</button>
+        <button type="submit" className="add-qoute-button">
+          Add Qoute
+        </button>
       </form>
     </div>
   );

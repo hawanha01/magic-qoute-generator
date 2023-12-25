@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import userValidation from "../../validations/userValidation";
 import { userActionEditUser } from "../../actions/userActions";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const EditProfileModal = ({ closeModal, currentUser }) => {
   const dispatch = useDispatch();
@@ -32,8 +32,8 @@ const EditProfileModal = ({ closeModal, currentUser }) => {
   });
 
   return (
-    <div>
-      <form onSubmit={formik.handleSubmit}>
+    <div className="edit-profile-modal">
+      <form onSubmit={formik.handleSubmit} className="signup-form">
         <div>
           <label htmlFor="firstName">First Name</label>
           <input
@@ -152,7 +152,6 @@ const EditProfileModal = ({ closeModal, currentUser }) => {
 
         <button type="submit">Submit</button>
       </form>
-      <Link to="/">Back to login</Link>
     </div>
   );
 };

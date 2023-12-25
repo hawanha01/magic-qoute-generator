@@ -1,0 +1,114 @@
+.comment-container {
+  width: 100%;
+  text-align: left;
+}
+
+.comment-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem auto;
+}
+
+.comment-body {
+  display: flex;
+  align-items: flex-start;
+}
+
+.comment-user-profile img {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  margin: 0.5rem 1rem auto auto;
+}
+
+.comment-info {
+  background-color: #F1F1F1;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.comment-actions {
+  display: flex;
+  align-items: center;
+}
+
+.comment-options {
+  background-color: #fff;
+  border: none;
+}
+
+.comment-options button {
+  display: block;
+  padding: 0.5rem;
+  text-align: left;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.comment-options button:hover {
+  background-color: #f0f0f0;
+}
+
+.comment-form-container>form,
+.edit-comment-form-container>form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem auto;
+}
+
+.comment-input,
+.edit-comment-input {
+  flex: 1;
+  width: 100%;
+  border: none;
+  border: 2px solid #5d6266;
+  border-radius: 5px;
+  padding: 0.5rem;
+  margin-right: 1rem;
+  outline: none;
+  font-size: 14px;
+  resize: vertical;
+  overflow-y: auto;
+  max-height: 10em;
+}
+
+.add-comment-button,
+.edit-comment-form-container button {
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: 0.25rem;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.add-comment-button:hover,
+.edit-comment-form-container button:hover {
+  background-color: #0056b3;
+}
+
+.comment-footer {
+  margin-left: 5rem;
+}
+
+
+@media (max-width: 768px) {
+  .comment-content {
+    width: 100%;
+  }
+
+  .comment-footer {
+    margin-left: 3rem;
+  }
+
+  .comment-user-profile img {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+  }
+}

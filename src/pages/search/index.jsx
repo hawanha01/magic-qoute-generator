@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -14,14 +13,10 @@ const Search = () => {
     const filteredQoutes = qoutes.filter((qoute) => {
       const authorMatch =
         qoute.userId &&
-        (users
+        users
           .find((user) => user.id === qoute.userId)
-          .firstName.toLowerCase()
-          .includes(searchQuery.toLowerCase()) ||
-          users
-            .find((user) => user.id === qoute.userId)
-            .lastName.toLowerCase()
-            .includes(searchQuery.toLowerCase()));
+          .name.toLowerCase()
+          .includes(searchQuery.toLowerCase());
 
       const qouteMatch = qoute.body
         .toLowerCase()

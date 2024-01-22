@@ -32,8 +32,21 @@ const EditProfileModal = ({ closeModal, currentUser }) => {
   });
 
   return (
-    <div className="edit-profile-modal">
-      <form onSubmit={formik.handleSubmit} className="signup-form">
+    <div style={{
+      display:'flex',
+      justifyContent: 'center',
+      alignItems:'center',
+      width: '50%'
+    }}>
+      <form
+        onSubmit={formik.handleSubmit}
+        style={{
+          display:'flex',
+          flexDirection:'column',
+          gap: 2,
+          width: '80%'
+        }}
+      >
         <div>
           <label htmlFor="firstName">First Name</label>
           <input
@@ -41,6 +54,7 @@ const EditProfileModal = ({ closeModal, currentUser }) => {
             autoComplete="off"
             placeholder="firstName"
             {...formik.getFieldProps("firstName")}
+            style={{width: '80%'}}
           />
           {formik.errors.firstName && formik.touched.firstName ? (
             <p className="form-error">{formik.errors.firstName}</p>
@@ -53,6 +67,7 @@ const EditProfileModal = ({ closeModal, currentUser }) => {
             type="text"
             autoComplete="off"
             placeholder="lastName"
+            style={{width: '80%'}}
             {...formik.getFieldProps("lastName")}
           />
           {formik.errors.lastName && formik.touched.lastName ? (
@@ -66,6 +81,7 @@ const EditProfileModal = ({ closeModal, currentUser }) => {
           {formik.errors.profilePicture && formik.touched.profilePicture ? (
             <p className="form-error">{formik.errors.profilePicture}</p>
           ) : null}
+          
         </div>
 
         <div>
@@ -74,6 +90,7 @@ const EditProfileModal = ({ closeModal, currentUser }) => {
             type="text"
             autoComplete="off"
             placeholder="name"
+            style={{width: '80%'}}
             {...formik.getFieldProps("name")}
           />
           {formik.errors.name && formik.touched.name ? (
@@ -87,6 +104,7 @@ const EditProfileModal = ({ closeModal, currentUser }) => {
             type="text"
             autoComplete="off"
             placeholder="username"
+            style={{width: '80%'}}
             {...formik.getFieldProps("userName")}
           />
           {formik.errors.userName && formik.touched.userName ? (
@@ -100,6 +118,7 @@ const EditProfileModal = ({ closeModal, currentUser }) => {
             type="email"
             autoComplete="off"
             placeholder="example@gmail.com"
+            style={{width: '80%'}}
             {...formik.getFieldProps("email")}
           />
           {formik.errors.email && formik.touched.email ? (
@@ -130,6 +149,7 @@ const EditProfileModal = ({ closeModal, currentUser }) => {
             type="password"
             autoComplete="off"
             placeholder="password"
+            style={{width: '80%'}}
             {...formik.getFieldProps("password")}
           />
           {formik.errors.password && formik.touched.password ? (
@@ -143,6 +163,7 @@ const EditProfileModal = ({ closeModal, currentUser }) => {
             type="password"
             autoComplete="off"
             placeholder="confirm password"
+            style={{width: '80%'}}
             {...formik.getFieldProps("confirmPassword")}
           />
           {formik.errors.confirmPassword && formik.touched.confirmPassword ? (

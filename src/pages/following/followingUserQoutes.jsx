@@ -6,6 +6,8 @@ const FollowingUserQoutes = () => {
   const userId = useParams();
   const users = useSelector((state) => state.users.data);
   const qoutes = useSelector((state) => state.qoutes.data);
+  const tags = useSelector((state) => state.tags.data);
+  const currentUser = useSelector((state) => state.currentUser.data);
   const user = users.find((user) => user.id === parseInt(userId.userId));
   return (
     <div>
@@ -16,7 +18,12 @@ const FollowingUserQoutes = () => {
           );
           return followingQoutes.map((followingQoute) => (
             <li key={`${followingId}-${followingQoute.id}`}>
-              <Qoute qouteId={followingQoute.id} />
+              <Qoute
+                qoute={followingQoute}
+                tags={tags}
+                user={user}
+                currentUser={currentUser}
+              />
             </li>
           ));
         })}

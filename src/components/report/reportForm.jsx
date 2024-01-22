@@ -6,7 +6,7 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Report.css";
 
-const ReportForm = ({ qouteId }) => {
+const ReportForm = ({ qoute }) => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUser.data);
   const reportId = useSelector((state) => state.reports.id);
@@ -16,9 +16,14 @@ const ReportForm = ({ qouteId }) => {
   const formik = useFormik({
     initialValues,
     onSubmit: (values, { resetForm }) => {
-      dispatch(reportActionAddReportToQoute({ values, currentUser, qouteId }));
       dispatch(
-        qouteActionAddReportToQoute({ reportId: reportId + 1, qouteId })
+        reportActionAddReportToQoute({ values, currentUser, qouteId: qoute.id })
+      );
+      dispatch(
+        qouteActionAddReportToQoute({
+          reportId: reportId + 1,
+          qouteId: qoute.id,
+        })
       );
       resetForm();
     },

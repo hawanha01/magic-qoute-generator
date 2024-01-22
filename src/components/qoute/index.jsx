@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useDispatch } from "react-redux";
 import Like from "../like";
 import Dislike from "../dislike";
 import Comment from "../comment";
@@ -16,22 +16,18 @@ import CommentForm from "../comment/commentForm";
 import ReportForm from "../report/reportForm";
 import profile_picture from "../../assets/profile_picture/profile_picture.jpg";
 
-const Qoute = ({ qouteId }) => {
-  const [editModalIsOpen, setEditModalIsOpen] = useState(false);
-  const [showOptions, setShowOptions] = useState(false);
-  const [activeTab, setActiveTab] = useState("comments");
-  const dispatch = useDispatch();
-  const qoutes = useSelector((state) => state.qoutes.data);
-  const qoute = qoutes.find((qoute) => qoute.id === qouteId);
-  const users = useSelector((state) => state.users.data);
-  const user = users.find((user) => user.id === qoute.userId);
-  const tags = useSelector((state) => state.tags.data);
+const Qoute = ({ qoute, user, currentUser, tags }) => {
+  const [editModalIsOpen, setEditModalIsOpen] = React.useState(false);
+  const [showOptions, setShowOptions] = React.useState(false);
+  const [activeTab, setActiveTab] = React.useState("comments");
+
   const associatedTags = tags.filter((tag) => qoute.tagIds.includes(tag.id));
-  const currentUser = useSelector((state) => state.currentUser.data);
-  const commentRef = useRef(null);
+  const commentRef = React.useRef(null);
+
+  const dispatch = useDispatch();
   ReactModal.setAppElement("#root");
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handleClickOutside = (event) => {
       if (commentRef.current && !commentRef.current.contains(event.target)) {
         setShowOptions(false);
@@ -54,11 +50,11 @@ const Qoute = ({ qouteId }) => {
   };
 
   const handleDelete = () => {
-    dispatch(likeActionRemoveLikesOfQoute(qouteId));
-    dispatch(dislikeActionRemoveDislikesOfQoute(qouteId));
-    dispatch(commentActionDeleteCommentsOfQoute(qouteId));
-    dispatch(reportActionDeleteReportsOfQoute(qouteId));
-    dispatch(qouteActionDeleteQoute(qouteId));
+    dispatch(likeActionRemoveLikesOfQoute(qoute.id));
+    dispatch(dislikeActionRemoveDislikesOfQoute(qoute.id));
+    dispatch(commentActionDeleteCommentsOfQoute(qoute.id));
+    dispatch(reportActionDeleteReportsOfQoute(qoute.id));
+    dispatch(qouteActionDeleteQoute(qoute.id));
   };
 
   const toggleOptions = () => {
@@ -86,7 +82,7 @@ const Qoute = ({ qouteId }) => {
             </div>
           </div>
         </div>
-        {currentUser.id === qoute.userId ? (
+        {currentUser.id === qoute.userId || currentUser.id === 1 ? (
           <div>
             <button onClick={toggleOptions}>&#8230;</button>
           </div>
@@ -108,8 +104,8 @@ const Qoute = ({ qouteId }) => {
         ))}
       </div>
       <hr />
-      <Like qouteId={qouteId} />
-      <Dislike qouteId={qouteId} />
+      <Like qoute={qoute} currentUser={currentUser} />
+      <Dislike qoute={qoute} currentUser={currentUser} />
       <hr />
       <div className="qoute-tabs">
         <button
@@ -132,20 +128,20 @@ const Qoute = ({ qouteId }) => {
             <Report key={reportId} reportId={reportId} />
           ))}
           {currentUser.id !== qoute.userId ? (
-            <ReportForm qouteId={qoute.id} />
+            <ReportForm qoute={qoute} />
           ) : null}
         </div>
       ) : (
         <div className="comment-report-div">
           {qoute.commentIds.map((commentId) => (
-            <Comment key={commentId} commentId={commentId} />
+            <Comment key={commentId} commentId={commentId} currentUser={currentUser} />
           ))}
-          <CommentForm qouteId={qoute.id} />
+          <CommentForm qoute={qoute} currentUser={currentUser} />
         </div>
       )}
 
       <ReactModal isOpen={editModalIsOpen} onRequestClose={closeEditModal}>
-        <EditQouteModal closeModal={closeEditModal} qouteId={qouteId} />
+        <EditQouteModal closeModal={closeEditModal} qoute={qoute} tags={tags} />
       </ReactModal>
     </div>
   );

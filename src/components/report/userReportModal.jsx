@@ -4,9 +4,8 @@ import { userActionAddReport } from "../../actions/userActions";
 import { reportActionAddReportToUser } from "../../actions/reportActions";
 import "./Report.css";
 
-const UserReportModal = ({ closeModal, userId }) => {
+const UserReportModal = ({ closeModal, user, currentUser }) => {
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.currentUser.data);
   const reportId = useSelector((state) => state.reports.id);
   const initialValues = {
     description: "",
@@ -15,8 +14,8 @@ const UserReportModal = ({ closeModal, userId }) => {
   const formik = useFormik({
     initialValues,
     onSubmit: (values, { resetForm }) => {
-      dispatch(reportActionAddReportToUser({ values, currentUser, userId }));
-      dispatch(userActionAddReport({ reportId: reportId + 1, userId }));
+      dispatch(reportActionAddReportToUser({ values, currentUser, userId: user.id }));
+      dispatch(userActionAddReport({ reportId: reportId + 1, userId: user.id }));
       resetForm();
       closeModal();
     },

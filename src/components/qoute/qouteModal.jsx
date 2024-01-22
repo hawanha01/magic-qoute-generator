@@ -1,13 +1,11 @@
 import { useFormik } from "formik";
 import React from "react";
 import qouteValidation from "../../validations/qouteValidation";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { qouteActionAddQoute } from "../../actions/qouteActions";
 import "./styles.css";
 
-const QouteModal = ({ closeModal }) => {
-  const tags = useSelector((state) => state.tags.data);
-  const currentUser = useSelector((state) => state.currentUser.data);
+const QouteModal = ({ closeModal, tags, currentUser }) => {
   const dispatch = useDispatch();
 
   const initialValues = {

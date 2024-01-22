@@ -54,3 +54,40 @@
 .dropdown-content div:hover {
   background-color: #f0f0f0;
 }
+
+.search-options {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+}
+
+.search-options>button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.search-options>button:hover {
+  background-color: #0056b3;
+}
+
+.search-inputs {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 0.7rem;
+  position: absolute;
+  top: -5rem;
+  left: 0;
+}
+
+.search-inputs input {
+  margin-bottom: 5px;
+}

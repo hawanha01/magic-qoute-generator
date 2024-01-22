@@ -6,8 +6,10 @@ const FollowingTagQoutes = () => {
   const userId = useParams();
   const users = useSelector((state) => state.users.data);
   const qoutes = useSelector((state) => state.qoutes.data);
+  const tags = useSelector((state) => state.tags.data);
+  const currentUser = useSelector((state) => state.currentUser.data);
   const user = users.find((user) => user.id === parseInt(userId.userId));
-  const uniqueQuoteIds = new Set();
+  const uniqueQuote = new Set();
 
   return (
     <div>
@@ -17,17 +19,22 @@ const FollowingTagQoutes = () => {
             qoute.tagIds.includes(tagId)
           );
 
-          const uniqueFollowingQuoteIds = followingQoutes
-            .map((followingQoute) => followingQoute.id)
-            .filter((quoteId) => !uniqueQuoteIds.has(quoteId));
+          const uniqueFollowingQuote = followingQoutes.filter(
+            (quote) => !uniqueQuote.has(quote)
+          );
 
-          uniqueFollowingQuoteIds.forEach((quoteId) => {
-            uniqueQuoteIds.add(quoteId);
+          uniqueFollowingQuote.forEach((quote) => {
+            uniqueQuote.add(quote);
           });
 
-          return uniqueFollowingQuoteIds.map((uniqueQuoteId) => (
-            <li key={`${tagId}-${uniqueQuoteId}`}>
-              <Qoute qouteId={uniqueQuoteId} />
+          return uniqueFollowingQuote.map((uniqueQuote) => (
+            <li key={`${tagId}-${uniqueQuote.id}`}>
+              <Qoute
+                qoute={uniqueQuote}
+                tags={tags}
+                user={user}
+                currentUser={currentUser}
+              />
             </li>
           ));
         })}

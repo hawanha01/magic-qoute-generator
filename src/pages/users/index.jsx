@@ -50,7 +50,7 @@ const AllUsers = () => {
               onRequestClose={closeModal}
               className="react-modal-content"
             >
-              <UserReportModal closeModal={closeModal} userId={user.id} />
+              <UserReportModal closeModal={closeModal} user={user} currentUser={currentUser} />
             </ReactModal>
           </li>
         ))}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,35 +11,38 @@ import {
   dislikeActionRemoveDislikeFromQoute,
 } from "../../actions/dislikeAction";
 
-const Dislike = ({ qouteId }) => {
-  const [isDislike, setIsDislike] = useState();
-  const qoutes = useSelector((state) => state.qoutes.data);
-  const currentUser = useSelector((state) => state.currentUser.data);
+const Dislike = ({ qoute, currentUser }) => {
+  const [isDislike, setIsDislike] = React.useState();
+
   const dislikes = useSelector((state) => state.dislikes.data);
-  const likeId = useSelector((state) => state.dislikes.id);
+  const dislikeId = useSelector((state) => state.dislikes.id);
+
   const dispatch = useDispatch();
-  const qoute = qoutes.find((qoute) => qoute.id === qouteId);
 
   const dislike = dislikes.find(
     (dislike) =>
-      dislike.userId === currentUser.id && dislike.qouteId === qouteId
+      dislike.userId === currentUser.id && dislike.qouteId === qoute.id
   );
 
-  useEffect(() => {
+  React.useEffect(() => {
     dislike ? setIsDislike(true) : setIsDislike(false);
   }, [dislike]);
 
   const handleDislike = () => {
     if (dislike) {
-      dispatch(dislikeActionRemoveDislikeFromQoute({ qouteId, currentUser }));
-      dispatch(qouteActionRemoveDislikeFromQoute({ qouteId, dislike }));
+      dispatch(
+        dislikeActionRemoveDislikeFromQoute({ qouteId: qoute.id, currentUser })
+      );
+      dispatch(
+        qouteActionRemoveDislikeFromQoute({ qouteId: qoute.id, dislike })
+      );
       setIsDislike(!isDislike);
     } else {
-      dispatch(dislikeActionDislikeQoute({ qouteId, currentUser }));
+      dispatch(dislikeActionDislikeQoute({ qouteId: qoute.id, currentUser }));
       dispatch(
         qouteActionAddDislikeToQoute({
-          qouteId,
-          dislikeId: likeId + 1,
+          qouteId: qoute.id,
+          dislikeId: dislikeId + 1,
         })
       );
       setIsDislike(!isDislike);

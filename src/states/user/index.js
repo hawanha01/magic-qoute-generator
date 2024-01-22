@@ -3,7 +3,7 @@ import schema from "../../schema";
 import { defaultSchema } from "../../schema";
 const initialState = {
   data: schema.users,
-  id: 0,
+  id: 1,
 };
 const userSlice = createSlice({
   name: "users",

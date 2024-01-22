@@ -1,14 +1,11 @@
 import { useFormik } from "formik";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import qouteValidation from "../../validations/qouteValidation";
 import { qouteActionUpdateQoute } from "../../actions/qouteActions";
 import "./styles.css";
 
-const EditQouteModal = ({ closeModal, qouteId }) => {
-  const qoutes = useSelector((state) => state.qoutes.data);
-  const qoute = qoutes.find((qoute) => qoute.id === qouteId);
-  const tags = useSelector((state) => state.tags.data);
+const EditQouteModal = ({ closeModal, qoute, tags }) => {
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -20,7 +17,7 @@ const EditQouteModal = ({ closeModal, qouteId }) => {
     initialValues,
     validationSchema: qouteValidation,
     onSubmit: (values, { resetForm }) => {
-      dispatch(qouteActionUpdateQoute({ values, qouteId }));
+      dispatch(qouteActionUpdateQoute({ values, qouteId: qoute.id }));
       resetForm();
       closeModal();
     },

@@ -1,11 +1,9 @@
 import { useFormik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import commentValidation from "../../validations/commentValidation";
 import { commentActionEditComment } from "../../actions/commentActions";
 import "./Comment.css";
-const EditCommentModal = ({ closeModal, commentId }) => {
-  const comments = useSelector((state) => state.comments.data);
-  const comment = comments.find((comment) => comment.id === commentId);
+const EditCommentModal = ({ closeModal, comment }) => {
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -16,7 +14,7 @@ const EditCommentModal = ({ closeModal, commentId }) => {
     initialValues,
     validationSchema: commentValidation,
     onSubmit: (values, { resetForm }) => {
-      dispatch(commentActionEditComment({ values, commentId }));
+      dispatch(commentActionEditComment({ values, commentId: comment.id }));
       resetForm();
       closeModal();
     },

@@ -8,9 +8,8 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Comment.css";
 
-const CommentForm = ({ qouteId }) => {
+const CommentForm = ({ qoute, currentUser }) => {
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.currentUser.data);
   const commentId = useSelector((state) => state.comments.id);
   const initialValues = {
     body: "",
@@ -20,11 +19,11 @@ const CommentForm = ({ qouteId }) => {
     initialValues,
     validationSchema: commentValidation,
     onSubmit: (values, { resetForm }) => {
-      dispatch(commentActionAddComment({ values, currentUser, qouteId }));
+      dispatch(commentActionAddComment({ values, currentUser, qouteId: qoute.id }));
       dispatch(
         qouteActionAddCommentToQoute({
           commentId: commentId + 1,
-          qouteId,
+          qouteId: qoute.id,
         })
       );
       resetForm();

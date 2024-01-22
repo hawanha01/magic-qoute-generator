@@ -31,7 +31,7 @@ const UserProfile = () => {
       <div className="user-actions">
         <button onClick={openModal}>Edit Profile</button>
       </div>
-      <ReactModal isOpen={modalIsOpen} onRequestClose={closeModal}>
+      <ReactModal isOpen={modalIsOpen} onRequestClose={closeModal} >
         <EditProfileModal closeModal={closeModal} currentUser={user} />
       </ReactModal>
     </div>

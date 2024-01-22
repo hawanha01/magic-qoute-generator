@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,36 +11,45 @@ import {
   commentActionRemoveDislikeFromComment,
 } from "../../actions/commentActions";
 
-const CommentDislike = ({ commentId }) => {
-  const [isDislike, setIsDislike] = useState();
-  const comments = useSelector((state) => state.comments.data);
+const CommentDislike = ({ comment }) => {
+  const [isDislike, setIsDislike] = React.useState();
+
   const currentUser = useSelector((state) => state.currentUser.data);
   const dislikes = useSelector((state) => state.dislikes.data);
   const likeId = useSelector((state) => state.dislikes.id);
   const dispatch = useDispatch();
-  const comment = comments.find((comment) => comment.id === commentId);
 
   const dislike = dislikes.find(
     (dislike) =>
-      dislike.userId === currentUser.id && dislike.commentId === commentId
+      dislike.userId === currentUser.id && dislike.commentId === comment.id
   );
 
-  useEffect(() => {
+  React.useEffect(() => {
     dislike ? setIsDislike(true) : setIsDislike(false);
   }, [dislike]);
 
   const handleDislike = () => {
     if (dislike) {
       dispatch(
-        dislikeActionRemoveDislikeFromComment({ commentId, currentUser })
+        dislikeActionRemoveDislikeFromComment({
+          commentId: comment.id,
+          currentUser,
+        })
       );
-      dispatch(commentActionRemoveDislikeFromComment({ commentId, dislike }));
+      dispatch(
+        commentActionRemoveDislikeFromComment({
+          commentId: comment.id,
+          dislike,
+        })
+      );
       setIsDislike(!isDislike);
     } else {
-      dispatch(dislikeActionDislikeComment({ commentId, currentUser }));
+      dispatch(
+        dislikeActionDislikeComment({ commentId: comment.id, currentUser })
+      );
       dispatch(
         commentActionAddDislikeToComment({
-          commentId,
+          commentId: comment.id,
           dislikeId: likeId + 1,
         })
       );

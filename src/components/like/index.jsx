@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -12,31 +12,34 @@ import {
   qouteActionRemoveLikeFromQoute,
 } from "../../actions/qouteActions";
 
-const Like = ({ qouteId }) => {
-  const [isLike, setIsLike] = useState();
-  const qoutes = useSelector((state) => state.qoutes.data);
-  const currentUser = useSelector((state) => state.currentUser.data);
+const Like = ({ qoute, currentUser }) => {
+  const [isLike, setIsLike] = React.useState();
+
   const likes = useSelector((state) => state.likes.data);
   const likeId = useSelector((state) => state.likes.id);
+
   const dispatch = useDispatch();
-  const qoute = qoutes.find((qoute) => qoute.id === qouteId);
 
   const like = likes.find(
-    (like) => like.userId === currentUser.id && like.qouteId === qouteId
+    (like) => like.userId === currentUser.id && like.qouteId === qoute.id
   );
 
-  useEffect(() => {
+  React.useEffect(() => {
     like ? setIsLike(true) : setIsLike(false);
-  }, []);
+  }, [like]);
 
   const handleLike = async () => {
     if (like) {
-      dispatch(likeActionRemoveLikeFromQoute({ qouteId, currentUser }));
-      dispatch(qouteActionRemoveLikeFromQoute({ qouteId, like }));
+      dispatch(
+        likeActionRemoveLikeFromQoute({ qouteId: qoute.id, currentUser })
+      );
+      dispatch(qouteActionRemoveLikeFromQoute({ qouteId: qoute.id, like }));
       setIsLike(!isLike);
     } else {
-      dispatch(likeActionLikeQoute({ qouteId, currentUser }));
-      dispatch(qouteActionAddLikeToQoute({ qouteId, likeId: likeId + 1 }));
+      dispatch(likeActionLikeQoute({ qouteId: qoute.id, currentUser }));
+      dispatch(
+        qouteActionAddLikeToQoute({ qouteId: qoute.id, likeId: likeId + 1 })
+      );
       setIsLike(!isLike);
     }
   };

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React from "react";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,32 +11,38 @@ import {
   commentActionRemoveLikeFromComment,
 } from "../../actions/commentActions";
 
-const CommentLike = ({ commentId }) => {
-  const [isLike, setIsLike] = useState();
-  const comments = useSelector((state) => state.comments.data);
+const CommentLike = ({ comment }) => {
+  const [isLike, setIsLike] = React.useState();
+
   const currentUser = useSelector((state) => state.currentUser.data);
   const likes = useSelector((state) => state.likes.data);
   const likeId = useSelector((state) => state.likes.id);
   const dispatch = useDispatch();
-  const comment = comments.find((comment) => comment.id === commentId);
 
   const like = likes.find(
-    (like) => like.userId === currentUser.id && like.commentId === commentId
+    (like) => like.userId === currentUser.id && like.commentId === comment.id
   );
 
-  useEffect(() => {
+  React.useEffect(() => {
     like ? setIsLike(true) : setIsLike(false);
   }, [like]);
 
   const handleLike = async () => {
     if (like) {
-      dispatch(likeActionRemoveLikeFromComment({ commentId, currentUser }));
-      dispatch(commentActionRemoveLikeFromComment({ commentId, like }));
+      dispatch(
+        likeActionRemoveLikeFromComment({ commentId: comment.id, currentUser })
+      );
+      dispatch(
+        commentActionRemoveLikeFromComment({ commentId: comment.id, like })
+      );
       setIsLike(!isLike);
     } else {
-      dispatch(likeActionLikeComment({ commentId, currentUser }));
+      dispatch(likeActionLikeComment({ commentId: comment.id, currentUser }));
       dispatch(
-        commentActionAddLikeToComment({ commentId, likeId: likeId + 1 })
+        commentActionAddLikeToComment({
+          commentId: comment.id,
+          likeId: likeId + 1,
+        })
       );
       setIsLike(!isLike);
     }

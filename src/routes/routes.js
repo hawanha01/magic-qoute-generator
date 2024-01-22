@@ -5,7 +5,6 @@ import Signup from "../pages/registration/signup";
 import AllUsers from "../pages/users/index.jsx";
 import AllTags from "../pages/tags/index.jsx";
 import UserProfile from "../pages/users/userProfile.jsx";
-import Search from "../pages/search/index.jsx";
 import UserReported from "../pages/report/userReported.jsx";
 import PrivateRoute from "./privateRoute";
 import FollowingUser from "../pages/following/followingUser.jsx";
@@ -58,10 +57,6 @@ const router = createBrowserRouter([
   {
     path: "/users/:userId",
     element: <PrivateRoute element={<UserProfile />} />,
-  },
-  {
-    path: "/search",
-    element: <PrivateRoute element={<Search />} />,
   },
   {
     path: "/users/:userId/reports",

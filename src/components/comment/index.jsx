@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CommentLike from "../like/commentLike";
 import CommentDislike from "../dislike/commentDislike";
@@ -10,20 +10,19 @@ import { dislikeActionRemoveDislikeFromComment } from "../../actions/dislikeActi
 import profile_picture from "../../assets/profile_picture/profile_picture.jpg";
 import "./Comment.css";
 
-const Comment = ({ commentId }) => {
-  const [editModalIsOpen, setEditModalIsOpen] = useState(false);
-  const [showOptions, setShowOptions] = useState(false);
+const Comment = ({ commentId, currentUser }) => {
+  const [editModalIsOpen, setEditModalIsOpen] = React.useState(false);
+  const [showOptions, setShowOptions] = React.useState(false);
 
   const users = useSelector((state) => state.users.data);
   const comments = useSelector((state) => state.comments.data);
-  const currentUser = useSelector((state) => state.currentUser.data);
   const dispatch = useDispatch();
   const comment = comments.find((comment) => comment.id === commentId);
   ReactModal.setAppElement("#root");
 
-  const commentRef = useRef(null);
+  const commentRef = React.useRef(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handleClickOutside = (event) => {
       if (commentRef.current && !commentRef.current.contains(event.target)) {
         setShowOptions(false);
@@ -74,7 +73,7 @@ const Comment = ({ commentId }) => {
               </div>
             </div>
             <span className="comment-actions">
-              {comment.userId === currentUser.id ? (
+              {comment.userId === currentUser.id || currentUser.id === 1 ? (
                 <span className="comment-options">
                   <button onClick={toggleOptions}>&#8230;</button>
                   {showOptions && (
@@ -90,12 +89,12 @@ const Comment = ({ commentId }) => {
           <ReactModal isOpen={editModalIsOpen} onRequestClose={closeEditModal}>
             <EditCommentModal
               closeModal={closeEditModal}
-              commentId={commentId}
+              comment={comment}
             />
           </ReactModal>
           <div className="comment-footer">
-            <CommentLike commentId={comment.id} />
-            <CommentDislike commentId={comment.id} />
+            <CommentLike comment={comment} />
+            <CommentDislike comment={comment} />
           </div>
         </div>
       ) : null}
